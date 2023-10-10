@@ -1,12 +1,12 @@
 import { MenuContainer } from "components/containers/MenuContainer";
 import { ThemeButton } from "../buttons/ThemeButton";
-import { Clocks } from "../clocks/Clocks";
+import { Time } from "../clocks/Time";
 
 export function Menu() {
   return (
     <MenuContainer>
-      <Clocks props={undefined} />
-      <ThemeButton props={undefined} />
+      <ThemeButton />
+      <Time />
     </MenuContainer>
   );
 }
