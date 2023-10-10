@@ -11,7 +11,7 @@ export function Tasks({ tasks }: { tasks: ITask[] }) {
           id={task.id}
           title={task.title}
           description={task.description}
-          completed={task.completed}
+          status={task.status}
         />
       ))}
     </TasksContainer>

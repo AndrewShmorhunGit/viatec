@@ -1,12 +1,12 @@
-import { boards, tasks } from "data/static";
+import { tasks } from "data/static";
 import { Board } from "../board/Board";
 import { BoardsContainer } from "components/containers/BoardsContainer";
+import { sortTasks } from "utils/functions";
 
 export function Boards() {
-  const [toDoTasks, inProgressTasks, doneTasks] = boards;
   return (
     <BoardsContainer>
-      {boards.map((board, index) => {
+      {sortTasks(tasks).map((board, index) => {
         return <Board key={index} board={board} index={index} />;
       })}
     </BoardsContainer>
