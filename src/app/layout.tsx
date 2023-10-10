@@ -1,4 +1,4 @@
-import { AppContainer } from "components/containers/AppContainer";
+import { AppContainer } from "components/app/AppContainer";
 import "./globals.css";
 import type { Metadata } from "next";
 import { AppProvider } from "components/app/AppProvider";

@@ -1,6 +1,6 @@
-import { Task } from "interfaces/ITasks";
+import { ITask } from "interfaces/ITasks";
 
-export const projectTasks: Task[] = [
+export const projectTasks: ITask[] = [
   {
     id: "1",
     name: "Project Kickoff Meeting",

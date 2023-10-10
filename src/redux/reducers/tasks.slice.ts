@@ -1,9 +1,9 @@
 "use client";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { projectTasks } from "data/static";
-import { Task, TasksState } from "interfaces/ITasks";
+import { ITask, ITasksState } from "interfaces/ITasks";
 
-const initialState: TasksState = {
+const initialState: ITasksState = {
   tasks: projectTasks,
 };
 
@@ -11,10 +11,10 @@ const tasksSlice = createSlice({
   name: "tasks",
   initialState,
   reducers: {
-    addTask: (state, action: PayloadAction<Task>) => {
+    addTask: (state, action: PayloadAction<ITask>) => {
       state.tasks.push(action.payload);
     },
-    updateTask: (state, action: PayloadAction<Task>) => {
+    updateTask: (state, action: PayloadAction<ITask>) => {
       const taskIndex = state.tasks.findIndex(
         (task) => task.id === action.payload.id
       );
