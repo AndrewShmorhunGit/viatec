@@ -1,3 +1,3 @@
 export function AddTaskButton({ props }: { props: any }) {
-  return <>AddTaskButton</>;
+  return <div>AddTaskButton</div>;
 }

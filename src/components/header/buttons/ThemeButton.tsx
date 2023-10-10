@@ -1,3 +1,3 @@
 export function ThemeButton({ props }: { props: any }) {
-  return <>ThemeButton</>;
+  return <div>ThemeButton</div>;
 }

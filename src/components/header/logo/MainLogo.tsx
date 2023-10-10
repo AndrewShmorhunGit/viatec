@@ -1,3 +1,3 @@
 export function MainLogo({ props }: { props: any }) {
-  return <>MainLogo</>;
+  return <div>MainLogo</div>;
 }

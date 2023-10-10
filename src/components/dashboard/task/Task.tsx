@@ -1,12 +1,16 @@
 import { ITask } from "interfaces/ITasks";
+import { DeleteTaskButton } from "../buttons/DeleteTaskButton";
+import { EditTaskButton } from "../buttons/EditTaskButton";
+import { TaskContainer } from "components/containers/TaskContainer";
 
 export function Task({ id, name, description, completed }: ITask) {
   return (
-    <div>
-      <strong>{name}</strong>
+    <TaskContainer>
+      <h4>{name}</h4>
       <p>{description}</p>
-      <div>{completed ? "task completed" : "todo task"}</div>
-      <p>{id}</p>
-    </div>
+      {/* <div>{completed ? "task completed" : "todo task"}</div> */}
+      <DeleteTaskButton props={undefined} />
+      <EditTaskButton props={undefined} />
+    </TaskContainer>
   );
 }

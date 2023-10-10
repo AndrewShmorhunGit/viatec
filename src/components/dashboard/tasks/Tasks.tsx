@@ -1,10 +1,11 @@
-import { projectTasks } from "data/static";
+import { TasksContainer } from "components/containers/TasksContsiner";
 import { Task } from "../task/Task";
+import { ITask } from "interfaces/ITasks";
 
-export function Tasks() {
+export function Tasks({ tasks }: { tasks: ITask[] }) {
   return (
-    <>
-      {projectTasks.map((task) => (
+    <TasksContainer>
+      {tasks.map((task) => (
         <Task
           key={task.id}
           id={task.id}
@@ -13,6 +14,6 @@ export function Tasks() {
           completed={task.completed}
         />
       ))}
-    </>
+    </TasksContainer>
   );
 }

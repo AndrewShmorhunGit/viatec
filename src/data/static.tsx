@@ -1,6 +1,6 @@
 import { ITask } from "interfaces/ITasks";
 
-export const projectTasks: ITask[] = [
+export const tasks: ITask[] = [
   {
     id: "1",
     name: "Project Kickoff Meeting",
@@ -71,3 +71,11 @@ export const projectTasks: ITask[] = [
     completed: false,
   },
 ];
+
+const toDoTasks = tasks.filter((task, index) => index < 3 && task);
+const inProgressTasks = tasks.filter(
+  (task, index) => index > 2 && index < 7 && task
+);
+const doneTasks = tasks.filter((task, index) => index > 6 && task);
+
+export const boards = [toDoTasks, inProgressTasks, doneTasks];

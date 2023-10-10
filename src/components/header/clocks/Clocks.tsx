@@ -1,3 +1,3 @@
 export function Clocks({ props }: { props: any }) {
-  return <>Clocks</>;
+  return <div>Clocks</div>;
 }

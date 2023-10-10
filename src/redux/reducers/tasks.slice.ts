@@ -1,10 +1,10 @@
 "use client";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { projectTasks } from "data/static";
+import { tasks } from "data/static";
 import { ITask, ITasksState } from "interfaces/ITasks";
 
 const initialState: ITasksState = {
-  tasks: projectTasks,
+  tasks: tasks,
 };
 
 const tasksSlice = createSlice({
