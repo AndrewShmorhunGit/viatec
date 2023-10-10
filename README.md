@@ -27,7 +27,7 @@ To do:
 
 Styles:
 
-- [ ] Get wrappers
+- [x] Get wrappers
 - [ ] Check bootstrap
 - [ ] Get bootstrap components
 - [ ] Create icons

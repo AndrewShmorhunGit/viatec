@@ -8,6 +8,7 @@ export function TaskContainer({ children }: { children: ReactNode }) {
         cursor: "grab",
         border: "1px solid lightgray",
         padding: "1.2rem",
+        position: "relative",
       }}
     >
       {children}

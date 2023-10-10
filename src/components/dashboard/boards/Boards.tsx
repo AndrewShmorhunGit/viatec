@@ -7,7 +7,7 @@ export function Boards() {
   return (
     <BoardsContainer>
       {boards.map((board, index) => {
-        return <Board key={index} board={board} />;
+        return <Board key={index} board={board} index={index} />;
       })}
     </BoardsContainer>
   );

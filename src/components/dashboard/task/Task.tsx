@@ -9,8 +9,8 @@ export function Task({ id, name, description, completed }: ITask) {
       <h4>{name}</h4>
       <p>{description}</p>
       {/* <div>{completed ? "task completed" : "todo task"}</div> */}
-      <DeleteTaskButton props={undefined} />
-      <EditTaskButton props={undefined} />
+      <DeleteTaskButton />
+      <EditTaskButton />
     </TaskContainer>
   );
 }
