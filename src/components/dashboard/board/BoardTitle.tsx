@@ -6,11 +6,11 @@ export function BoardTitle({ index }: { index: number }) {
   };
 
   return (
-    <h5
+    <h3
       className="text-center"
       style={{ textTransform: "capitalize", paddingBottom: "1.2rem" }}
     >
       {createTitle(index)}
-    </h5>
+    </h3>
   );
 }

@@ -28,12 +28,12 @@ To do:
 Styles:
 
 - [x] Get wrappers
-- [ ] Check bootstrap
-- [ ] Get bootstrap components
-- [ ] Create icons
-- [ ] Manage Buttons
-- [ ] Add theme button
-- [ ] Add favicon
+- [x] Check bootstrap
+- [ ] Get bootstrap components & classes
+- [x] Create icons
+- [x] Manage Buttons
+- [x] Add theme button
+- [x] Add favicon
 - [ ] Responsive
 
 Router:

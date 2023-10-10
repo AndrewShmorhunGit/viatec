@@ -8,12 +8,12 @@ export function DeleteTaskButton() {
         border: "none",
         background: "transparent",
         position: "absolute",
-        bottom: "0.4rem",
-        right: "2.8rem",
+        bottom: "0.8rem",
+        right: "3.8rem",
       }}
       onClick={() => console.log("delete")}
     >
-      <DeleteIcon size={12} color={"orangered"} />
+      <DeleteIcon size={16} color={"orangered"} />
     </button>
   );
 }

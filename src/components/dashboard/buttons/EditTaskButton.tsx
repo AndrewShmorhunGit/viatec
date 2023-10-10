@@ -8,12 +8,12 @@ export function EditTaskButton() {
         border: "none",
         background: "transparent",
         position: "absolute",
-        bottom: "0.4rem",
+        bottom: "0.8rem",
         right: "1.2rem",
       }}
       onClick={() => console.log("edit")}
     >
-      <EditIcon size={10} color={"orange"} />
+      <EditIcon size={14} color={"#5795a7"} />
     </button>
   );
 }

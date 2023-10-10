@@ -9,7 +9,7 @@ export function Tasks({ tasks }: { tasks: ITask[] }) {
         <Task
           key={task.id}
           id={task.id}
-          name={task.name}
+          title={task.title}
           description={task.description}
           completed={task.completed}
         />

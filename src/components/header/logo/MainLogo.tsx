@@ -1,3 +1,3 @@
 export function MainLogo({ props }: { props: any }) {
-  return <div>MainLogo</div>;
+  return <img src="https://viatec.ua/img/header/logo.svg" />;
 }

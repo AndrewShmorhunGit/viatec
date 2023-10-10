@@ -11,7 +11,7 @@ export function Time() {
         gap: "1.2rem",
       }}
     >
-      <LuClock3 style={{ color: "orange" }} size={18} />
+      <LuClock3 style={{ color: "#5795a7" }} size={18} />
       <Clocks />
     </div>
   );

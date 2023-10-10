@@ -11,25 +11,25 @@ export function EditIcon({ size, color }: { size: number; color: string }) {
         <path
           d="M366.666 66.6665H300C133.333 66.6665 66.6665 133.333 66.6665 300V500C66.6665 666.666 133.333 733.333 300 733.333H500C666.666 733.333 733.333 666.666 733.333 500V433.333"
           stroke={color}
-          stroke-width="50"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="50"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M534.667 100.667L272 363.333C262 373.333 252 393 250 407.333L235.667 507.666C230.333 544 256 569.333 292.333 564.333L392.667 550C406.667 548 426.333 538 436.667 528L699.333 265.333C744.667 220 766 167.333 699.333 100.667C632.667 34.0001 580 55.3335 534.667 100.667Z"
           stroke={color}
-          stroke-width="50"
-          stroke-miterlimit="10"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="50"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M497 138.33C519.333 217.997 581.667 280.33 661.667 302.997"
           stroke={color}
-          stroke-width="50"
-          stroke-miterlimit="10"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="50"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
       <defs>
@@ -40,9 +40,9 @@ export function EditIcon({ size, color }: { size: number; color: string }) {
           width="808"
           height="808"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
