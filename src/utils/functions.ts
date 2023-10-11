@@ -32,3 +32,10 @@ export const getTaskById = (
   }
   return task;
 };
+
+export const selectTaskColor = (status: TaskStatusEnum): string =>
+  status === TaskStatusEnum.TO_DO
+    ? "#a9e34b"
+    : status === TaskStatusEnum.IN_PROGRESS
+    ? "#ffd43b"
+    : "#5795a7";

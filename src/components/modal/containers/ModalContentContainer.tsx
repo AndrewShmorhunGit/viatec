@@ -5,6 +5,7 @@ import { ReactNode, useRef } from "react";
 import { useThemeContext } from "context/theme.context";
 
 export function ModalContentContainer({ children }: { children: ReactNode }) {
+  // useModalContent
   const dispatch = useAppDispatch();
   const { data, value } = useAppSelector((state) => state.modal);
   const refClickOutside = useRef<HTMLDivElement | null>(null);

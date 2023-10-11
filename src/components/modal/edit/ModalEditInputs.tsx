@@ -1,7 +1,7 @@
 "use client";
 import { ITaskForm, TaskStatusEnum } from "interfaces/ITasks";
 
-export function ModalEditForm({
+export function ModalEditInputs({
   invalidTitle,
   invalidDescription,
   isTitle,
@@ -12,6 +12,7 @@ export function ModalEditForm({
   handleStatusChange,
 }: ITaskForm) {
   return (
+    // refactoring as FormInput, FormTextArea, FormSelect
     <div
       className="form-floating"
       style={{
@@ -37,6 +38,7 @@ export function ModalEditForm({
           </label>
         )}
         <input
+          style={{ fontSize: "1.2rem" }}
           type="text"
           className={`form-control ${invalidTitle && "is-invalid"}`}
           id="formTitleInput"
@@ -64,7 +66,7 @@ export function ModalEditForm({
           placeholder="Task description" // is-invalid
           value={isDescription}
           onChange={handleDescriptionChange}
-          style={{ height: "100px" }}
+          style={{ height: "100px", fontSize: "1.2rem" }}
         />
       </div>
       <div>
@@ -72,6 +74,8 @@ export function ModalEditForm({
           Status
         </label>
         <select
+          style={{ fontSize: "1.2rem" }}
+          id="formStatusSelect"
           className="form-select"
           value={isStatus}
           onChange={handleStatusChange}

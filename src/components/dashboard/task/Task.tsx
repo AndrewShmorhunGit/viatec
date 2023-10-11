@@ -6,7 +6,7 @@ import { Title } from "./Title";
 
 export function Task({ id, title, description, status }: ITask) {
   return (
-    <TaskContainer>
+    <TaskContainer status={status}>
       <Title title={title} />
       <p style={{ fontSize: "1.6rem" }}>{description}</p>
       {/* <div>{completed ? "task completed" : "todo task"}</div> */}

@@ -9,7 +9,7 @@ export function Board({ board, index }: { board: ITask[]; index: number }) {
     <BoardContainer>
       <BoardTitle index={index} />
       <Tasks tasks={board} />
-      <AddTaskButton />
+      <AddTaskButton index={index} />
     </BoardContainer>
   );
 }

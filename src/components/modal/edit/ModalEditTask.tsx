@@ -1,5 +1,6 @@
 "use client";
 import {
+  addTask,
   setModal,
   updateTask,
   useAppDispatch,
@@ -9,20 +10,34 @@ import { ModalCloseX } from "../buttons/ModalCloseX";
 import { ModalCloseButton } from "../buttons/ModalCloseButton";
 import { ITask, TaskStatusEnum } from "interfaces/ITasks";
 import { getTaskById } from "utils/functions";
-import { ModalEditButton } from "../buttons/ModalEditButton";
-import { ModalEditForm } from "./ModalEditBody";
-import { ChangeEvent, useState } from "react";
+import { ModalEditInputs } from "./ModalEditInputs";
+import { FormEvent, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+
+// Generate a UUID
 
 export function ModalEditTask() {
-  // special hook
+  // useTaskInModal hook
   const { value, data } = useAppSelector((state) => state.modal);
   const { tasks } = useAppSelector((store) => store.tasks);
   let task: ITask | null = null;
+  const isAdd = value === "add";
   if (data) {
-    task = data ? getTaskById(data, tasks) : null;
+    if (isAdd) {
+      task = {
+        id: uuidv4(),
+        description: "",
+        title: "",
+        status: data as TaskStatusEnum,
+      };
+    } else {
+      task = data ? getTaskById(data, tasks) : null;
+    }
   }
 
-  if (value === "edit" && data && task) {
+  if ((value === "edit" || isAdd) && data && task) {
+    // useTaskFormHook
+    /////////////////////////////////////////
     const dispatch = useAppDispatch();
     const [isTitle, setTitle] = useState(task.title);
     const [isDescription, setDescription] = useState(task.description);
@@ -45,15 +60,18 @@ export function ModalEditTask() {
       setStatus(event.target.value as TaskStatusEnum);
     };
 
-    const handleSubmit = () => {
+    const editedTaskToSubmit = {
+      id: task.id,
+      description: isDescription,
+      title: isTitle,
+      status: isStatus,
+    };
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
       task &&
         dispatch(
-          updateTask({
-            id: task.id,
-            description: isDescription,
-            title: isTitle,
-            status: isStatus,
-          })
+          isAdd ? addTask(editedTaskToSubmit) : updateTask(editedTaskToSubmit)
         );
       dispatch(setModal({ value: "none", data: null }));
     };
@@ -61,10 +79,14 @@ export function ModalEditTask() {
     const invalidDescription = isDescription.length === 0;
     const invalidTitle = isTitle.length === 0;
 
+    /////////////////////////////////////////
+
     return (
       <form className="modal-content" onSubmit={handleSubmit}>
         <div className="modal-header" style={{ paddingBottom: "2rem" }}>
-          <h2 className="modal-title">{`Editing "${task.title}" Task`}</h2>
+          <h2 className="modal-title">
+            {isAdd ? "Add New Task" : `Editing "${task.title}" Task`}
+          </h2>
           <ModalCloseX />
         </div>
         <div className="modal-body">
@@ -75,7 +97,7 @@ export function ModalEditTask() {
               paddingBottom: "2rem",
             }}
           >{`Fill the form`}</p>
-          <ModalEditForm
+          <ModalEditInputs
             invalidTitle={invalidTitle}
             invalidDescription={invalidDescription}
             isTitle={isTitle}
@@ -93,7 +115,7 @@ export function ModalEditTask() {
             className="btn btn-primary"
             style={{ background: "#5795a7", fontSize: "1.6rem" }}
           >
-            Edit
+            {isAdd ? "Add" : "Edit"}
           </button>
         </div>
       </form>

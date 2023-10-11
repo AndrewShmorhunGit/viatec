@@ -18,7 +18,7 @@ export const modalSlice = createSlice({
       state,
       action: PayloadAction<{
         value: string;
-        data: string | null;
+        data: string | TaskStatusEnum | null;
       }>
     ) => {
       state.value = action.payload.value;
