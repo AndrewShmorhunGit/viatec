@@ -1,4 +1,4 @@
-import { TasksContainer } from "components/containers/TasksContsiner";
+import { TasksContainer } from "components/dashboard/containers/TasksContsiner";
 import { Task } from "../task/Task";
 import { ITask } from "interfaces/ITasks";
 

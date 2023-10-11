@@ -30,7 +30,7 @@ export const tasks: ITask[] = [
   },
   {
     id: "5",
-    title: "Development Sprint 1",
+    title: "Development Sprint",
     description:
       "Start the first development sprint to build project features.",
     status: TaskStatusEnum.IN_PROGRESS,

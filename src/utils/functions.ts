@@ -21,3 +21,14 @@ export const sortTasks = (tasks: ITask[]): ITask[][] => {
     [[], [], []] as ITask[][]
   );
 };
+
+export const getTaskById = (
+  id: string | null,
+  tasks: ITask[]
+): ITask | null => {
+  const task = tasks.find((task) => task.id === id);
+  if (task === undefined || id === "nill") {
+    return null;
+  }
+  return task;
+};

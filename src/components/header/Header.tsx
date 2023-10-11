@@ -1,4 +1,4 @@
-import { HeaderContainer } from "components/containers/HeaderContainer";
+import { HeaderContainer } from "components/header/containers/HeaderContainer";
 import { MainLogo } from "./logo/MainLogo";
 import { Menu } from "./menu/Menu";
 

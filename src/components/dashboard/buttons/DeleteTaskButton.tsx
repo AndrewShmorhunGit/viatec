@@ -1,7 +1,11 @@
 "use client";
+import { setModal } from "app/redux";
 import { DeleteIcon } from "components/icons/DeleteIcon";
+import { useAppDispatch } from "hooks/useAppDispatch";
 
-export function DeleteTaskButton() {
+export function DeleteTaskButton({ taskId }: { taskId: string }) {
+  const dispatch = useAppDispatch();
+
   return (
     <button
       style={{
@@ -11,7 +15,7 @@ export function DeleteTaskButton() {
         bottom: "0.8rem",
         right: "3.8rem",
       }}
-      onClick={() => console.log("delete")}
+      onClick={() => dispatch(setModal({ value: "delete", data: taskId }))}
     >
       <DeleteIcon size={16} color={"orangered"} />
     </button>

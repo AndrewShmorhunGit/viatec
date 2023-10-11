@@ -1,5 +1,10 @@
-import { TaskStatusEnum } from "interfaces/ITasks";
+"use client";
+import { useAppSelector } from "app/redux";
 
-export function ModalAddTask({ status }: { status: TaskStatusEnum }) {
-  return <>ModalAddTask</>;
+export function ModalAddTask() {
+  const { value, data } = useAppSelector((state) => state.modal);
+
+  if (value === "add" && data) {
+    return <>ModalAddTask</>;
+  }
 }

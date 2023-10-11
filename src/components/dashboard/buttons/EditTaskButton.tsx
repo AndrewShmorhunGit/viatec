@@ -1,7 +1,7 @@
 "use client";
 import { EditIcon } from "components/icons/EditIcon";
 
-export function EditTaskButton() {
+export function EditTaskButton({ taskId }: { taskId: string }) {
   return (
     <button
       style={{

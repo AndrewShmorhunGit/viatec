@@ -1,10 +1,10 @@
 "use client";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { ITask, TaskStatusEnum } from "interfaces/ITasks";
+import { TaskStatusEnum } from "interfaces/ITasks";
 
 const initialState: {
   value: string;
-  data: ITask | TaskStatusEnum | null;
+  data: string | TaskStatusEnum | null;
 } = {
   value: "none",
   data: null,
@@ -18,7 +18,7 @@ export const modalSlice = createSlice({
       state,
       action: PayloadAction<{
         value: string;
-        data: ITask | null;
+        data: string | null;
       }>
     ) => {
       state.value = action.payload.value;
