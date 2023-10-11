@@ -1,13 +1,23 @@
 import { ITask, TaskStatusEnum } from "interfaces/ITasks";
 
 export const sortTasks = (tasks: ITask[]): ITask[][] => {
-  const toDoTasks = tasks.filter(
-    (task) => task.status === TaskStatusEnum.TO_DO
+  return tasks.reduce(
+    (boards, task) => {
+      switch (task.status) {
+        case TaskStatusEnum.TO_DO:
+          boards[0].push(task);
+          break;
+        case TaskStatusEnum.IN_PROGRESS:
+          boards[1].push(task);
+          break;
+        case TaskStatusEnum.DONE:
+          boards[2].push(task);
+          break;
+        default:
+          break;
+      }
+      return boards;
+    },
+    [[], [], []] as ITask[][]
   );
-  const inProgressTasks = tasks.filter(
-    (task) => task.status === TaskStatusEnum.IN_PROGRESS
-  );
-  const doneTasks = tasks.filter((task) => task.status === TaskStatusEnum.DONE);
-  const boards = [toDoTasks, inProgressTasks, doneTasks];
-  return boards;
 };
