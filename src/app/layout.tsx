@@ -18,6 +18,7 @@ export default function RootLayout({
   return (
     <AppContainer>
       <AppProvider>
+        <Modal />
         <Header />
         {children}
       </AppProvider>

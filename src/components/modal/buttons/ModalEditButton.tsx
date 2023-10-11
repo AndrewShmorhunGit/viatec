@@ -1,8 +1,8 @@
 "use client";
 
-import { deleteTask, setModal, useAppDispatch } from "app/redux";
+import { updateTask, setModal, useAppDispatch } from "app/redux";
 
-export function ModalDeleteButton({ id }: { id: string }) {
+export function ModalEditButton({ id }: { id: string }) {
   const dispatch = useAppDispatch();
 
   return (
@@ -11,11 +11,11 @@ export function ModalDeleteButton({ id }: { id: string }) {
       className="btn btn-primary"
       style={{ background: "#5795a7", fontSize: "1.6rem" }}
       onClick={() => {
-        dispatch(deleteTask(id));
+        // dispatch(deleteTask(id));
         dispatch(setModal({ value: "none", data: null }));
       }}
     >
-      Delete
+      Edit
     </button>
   );
 }

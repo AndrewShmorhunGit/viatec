@@ -14,7 +14,6 @@ export function ModalContainer({ children }: { children: React.ReactNode }) {
           background: "rgba(0, 0, 0, 0.5)",
           cursor: "pointer",
           zIndex: condition ? 99 : -1,
-          display: condition ? "flex" : "none",
         }}
       >
         {children}

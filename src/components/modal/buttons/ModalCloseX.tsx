@@ -7,6 +7,7 @@ export function ModalCloseX() {
     <button
       type="button"
       className="btn-close"
+      style={{ transform: "scale(2)" }}
       onClick={() => dispatch(setModal({ value: "none", data: null }))}
     ></button>
   );

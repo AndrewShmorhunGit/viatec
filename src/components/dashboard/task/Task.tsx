@@ -4,7 +4,7 @@ import { EditTaskButton } from "../buttons/EditTaskButton";
 import { TaskContainer } from "components/dashboard/containers/TaskContainer";
 import { Title } from "./Title";
 
-export function Task({ id, title, description, status: completed }: ITask) {
+export function Task({ id, title, description, status }: ITask) {
   return (
     <TaskContainer>
       <Title title={title} />
