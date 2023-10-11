@@ -14,3 +14,16 @@ export interface ITask {
 export interface ITasksState {
   tasks: ITask[];
 }
+
+export interface ITaskForm {
+  invalidTitle: boolean;
+  invalidDescription: boolean;
+  isTitle: string;
+  isDescription: string;
+  isStatus: TaskStatusEnum;
+  handleTitleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleDescriptionChange: (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => void;
+  handleStatusChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+}

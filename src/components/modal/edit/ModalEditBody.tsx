@@ -1,29 +1,18 @@
 "use client";
-import { ITask, TaskStatusEnum } from "interfaces/ITasks";
-import { useState } from "react";
+import { ITaskForm, TaskStatusEnum } from "interfaces/ITasks";
 
-export function ModalEditForm({ task }: { task: ITask }) {
-  const [isTitle, setTitle] = useState(task.title);
-  const [isDescription, setDescription] = useState(task.description);
-  const [isStatus, setStatus] = useState<TaskStatusEnum>(TaskStatusEnum.TO_DO);
-
-  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(event.target.value);
-  };
-
-  const handleDescriptionChange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    const target = event.target;
-    setDescription(`${target.value}`);
-  };
-  //Property 'target' does not exist on type 'ChangeEventHandler<HTMLTextAreaElement>'.ts(2339)
-
-  const invalidDescription = isDescription.length === 0;
-  const invalidTitle = isTitle.length === 0;
-
+export function ModalEditForm({
+  invalidTitle,
+  invalidDescription,
+  isTitle,
+  isDescription,
+  isStatus,
+  handleTitleChange,
+  handleDescriptionChange,
+  handleStatusChange,
+}: ITaskForm) {
   return (
-    <form
+    <div
       className="form-floating"
       style={{
         maxWidth: "48rem",
@@ -84,14 +73,14 @@ export function ModalEditForm({ task }: { task: ITask }) {
         </label>
         <select
           className="form-select"
-          aria-label="Disabled select example"
-          disabled
+          value={isStatus}
+          onChange={handleStatusChange}
         >
-          <option value="1">{TaskStatusEnum.TO_DO}</option>
-          <option value="2">{TaskStatusEnum.IN_PROGRESS}</option>
-          <option value="3">{TaskStatusEnum.DONE}</option>
+          <option value={TaskStatusEnum.TO_DO}>To Do</option>
+          <option value={TaskStatusEnum.IN_PROGRESS}>In Progress</option>
+          <option value={TaskStatusEnum.DONE}>Done</option>
         </select>
       </div>
-    </form>
+    </div>
   );
 }
