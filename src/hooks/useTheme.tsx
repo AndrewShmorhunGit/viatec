@@ -11,7 +11,7 @@ export const useTheme = () => {
     if (isMode === "dark") {
       document.documentElement.classList.add("dark");
     }
-  }, []);
+  }, [isMode]);
 
   const toggleTheme = () => {
     isMode === "light" ? setMode("dark") : setMode("light");

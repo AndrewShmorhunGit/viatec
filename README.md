@@ -39,7 +39,7 @@ Styles:
 
 Router:
 
-- [ ] Set metadata
+- [x] Set metadata
 - [ ] Manage routes
 - [ ] ErrorPage
 - [ ] LoadingPage
@@ -55,3 +55,7 @@ Footer:
 Tests:
 
 - [ ] Add unit tests
+
+Fix:
+
+- [ ] Form validation
