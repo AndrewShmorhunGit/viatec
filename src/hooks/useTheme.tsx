@@ -16,7 +16,6 @@ export const useTheme = () => {
   const toggleTheme = () => {
     isMode === "light" ? setMode("dark") : setMode("light");
     document.documentElement.classList.toggle("dark");
-    console.log(isMode);
   };
 
   const checkTheme = isMode === "light" ? false : true;
