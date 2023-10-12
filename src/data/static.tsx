@@ -89,7 +89,7 @@ export const year = new Date().getFullYear();
 export const links = [
   {
     icon: <AiFillGithub size={20} style={{ color: "#5795a7" }} />,
-    link: "https://github.com/AndrewShmorhunGit/next-test-app/tree/latest",
+    link: "https://github.com/AndrewShmorhunGit/viatec",
   },
   {
     icon: <AiFillLinkedin size={20} style={{ color: "#5795a7" }} />,
