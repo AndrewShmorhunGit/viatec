@@ -88,20 +88,14 @@ export function ModalEditTask() {
 
     return (
       <form className="modal-content" onSubmit={handleSubmit}>
-        <div className="modal-header" style={{ paddingBottom: "2rem" }}>
+        <div className="modal-header pb-2">
           <h2 className="modal-title">
             {isAdd ? "Add New Task" : `Editing "${task.title}" Task`}
           </h2>
           <ModalCloseX />
         </div>
-        <div className="modal-body">
-          <p
-            style={{
-              fontSize: "1.6rem",
-              textTransform: "capitalize",
-              paddingBottom: "2rem",
-            }}
-          >{`Fill the form`}</p>
+        <div className="modal-body pb-5">
+          <p className="fs-4  text-capitalize">{`Fill the form`}</p>
           <ModalEditInputs
             invalidTitle={invalidTitle}
             invalidDescription={invalidDescription}
@@ -113,13 +107,9 @@ export function ModalEditTask() {
             handleStatusChange={handleStatusChange}
           />
         </div>
-        <div className="modal-footer" style={{ gap: "2rem" }}>
+        <div className="modal-footer gap-4">
           <ModalCloseButton />
-          <button
-            type="submit"
-            className="btn btn-primary"
-            style={{ background: "#5795a7", fontSize: "1.6rem" }}
-          >
+          <button type="submit" className="btn btn-primary fs-4 bg-main">
             {isAdd ? "Add" : "Edit"}
           </button>
         </div>

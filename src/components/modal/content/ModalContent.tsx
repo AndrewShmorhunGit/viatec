@@ -1,7 +1,6 @@
 "use client";
 import { ModalDeleteTask } from "../delete/ModalDeleteTask";
 import { ModalEditTask } from "../edit/ModalEditTask";
-import { ModalAddTask } from "../add/ModalAddTask";
 
 import { ModalContentContainer } from "../containers/ModalContentContainer";
 import { useAppSelector } from "app/redux";
@@ -13,7 +12,6 @@ export function ModalContent() {
       <ModalContentContainer>
         <ModalDeleteTask />
         <ModalEditTask />
-        <ModalAddTask />
       </ModalContentContainer>
     );
   }

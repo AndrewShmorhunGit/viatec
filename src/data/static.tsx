@@ -1,4 +1,5 @@
 import { ITask, TaskStatusEnum } from "interfaces/ITasks";
+import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
 
 export const tasks: ITask[] = [
   {
@@ -79,3 +80,19 @@ const inProgressTasks = tasks.filter(
 const doneTasks = tasks.filter((task, index) => index > 6 && task);
 
 export const boards = [toDoTasks, inProgressTasks, doneTasks];
+
+export const content =
+  "Developed by Shmorhun Andrew for testing porpoises. All rights reserved.";
+
+export const year = new Date().getFullYear();
+
+export const links = [
+  {
+    icon: <AiFillGithub size={20} style={{ color: "#5795a7" }} />,
+    link: "https://github.com/AndrewShmorhunGit/next-test-app/tree/latest",
+  },
+  {
+    icon: <AiFillLinkedin size={20} style={{ color: "#5795a7" }} />,
+    link: "https://www.linkedin.com/in/andrew-shmorhun-850a76209/",
+  },
+];

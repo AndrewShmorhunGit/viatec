@@ -8,8 +8,7 @@ export function ModalDeleteButton({ id }: { id: string }) {
   return (
     <button
       type="button"
-      className="btn btn-primary"
-      style={{ background: "#5795a7", fontSize: "1.6rem" }}
+      className="btn btn-primary fs-4 bg-main"
       onClick={() => {
         dispatch(deleteTask(id));
         dispatch(setModal({ value: "none", data: null }));

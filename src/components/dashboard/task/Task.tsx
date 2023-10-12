@@ -8,9 +8,11 @@ export function Task({ id, title, description, status }: ITask) {
   return (
     <TaskContainer status={status}>
       <Title title={title} />
-      <p className="fs-5">{description}</p>
-      <DeleteTaskButton taskId={id} />
+      <p className="fs-5" style={{ paddingRight: "4rem" }}>
+        {description}
+      </p>
       <EditTaskButton taskId={id} />
+      <DeleteTaskButton taskId={id} />
     </TaskContainer>
   );
 }
