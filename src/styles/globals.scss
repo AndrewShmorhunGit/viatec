@@ -84,3 +84,19 @@ body {
 .bg-task-dark {
   background: #343a40;
 }
+
+.scroll-bar::-webkit-scrollbar {
+  width: 1rem;
+  height: 1rem;
+}
+
+.scroll-bar::-webkit-scrollbar-track {
+  background: lightgrey;
+  border-radius: 1rem;
+}
+
+.scroll-bar::-webkit-scrollbar-thumb {
+  background: #5795a7;
+  opacity: 50%;
+  border-radius: 1rem;
+}

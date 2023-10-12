@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 import { AppProvider } from "components/providers/AppProvider";
 import { Header } from "components/header/Header";
 import { Modal } from "components/modal/Modal";
+import { Footer } from "components/footer/Footer";
+import { PageContainer } from "components/containers/PageContainer";
+import { PageContentContainer } from "components/containers/PageContentContainer";
 
 export const metadata: Metadata = {
   title: "Viatec Test App",
@@ -19,8 +22,11 @@ export default function RootLayout({
     <AppContainer>
       <AppProvider>
         <Modal />
-        <Header />
-        {children}
+        <PageContainer>
+          <Header />
+          <PageContentContainer>{children}</PageContentContainer>
+          <Footer />
+        </PageContainer>
       </AppProvider>
     </AppContainer>
   );
