@@ -4,6 +4,7 @@ import { useThemeContext } from "context/theme.context";
 import { IBoard, ITask } from "interfaces/ITasks";
 import { ReactNode } from "react";
 import { selectTaskColor } from "utils/functions";
+import { useDragContext } from "context/drag.context";
 export function TaskContainer({
   board,
   task,
@@ -27,7 +28,7 @@ export function TaskContainer({
         styles.task_container
       }`}
       style={{
-        borderLeft: `8px solid ${selectTaskColor(status)}`,
+        borderLeft: `8px solid ${selectTaskColor(task.status)}`,
         padding: "1.6rem 1.6rem 2rem 2.4rem",
       }}
       draggable={true}

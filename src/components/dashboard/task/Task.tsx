@@ -6,13 +6,13 @@ import { Title } from "./Title";
 
 export function Task({ board, task }: { board: IBoard; task: ITask }) {
   return (
-    <TaskContainer status={status}>
-      <Title title={title} />
+    <TaskContainer board={board} task={task}>
+      <Title title={task.title} />
       <p className="fs-5" style={{ paddingRight: "4rem" }}>
-        {description}
+        {task.description}
       </p>
-      <EditTaskButton taskId={id} />
-      <DeleteTaskButton taskId={id} />
+      <EditTaskButton taskId={task.id} />
+      <DeleteTaskButton taskId={task.id} />
     </TaskContainer>
   );
 }

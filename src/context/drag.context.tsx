@@ -1,11 +1,8 @@
 "use client";
-import { current } from "@reduxjs/toolkit";
-import { useAppSelector } from "app/redux";
-import { IBoard, ITask } from "interfaces/ITasks";
-// import { useDrag } from "hooks/useTheme";
 
+import { setBoards, useAppDispatch, useAppSelector } from "app/redux";
+import { IBoard, ITask } from "interfaces/ITasks";
 import { ReactNode, createContext, useContext, useState } from "react";
-import { sortTasks } from "utils/functions";
 
 interface IDrag {
   isBoards: IBoard[];
@@ -27,13 +24,9 @@ interface IDrag {
 export const DragContext = createContext<IDrag | null>(null);
 
 export function DragContextProvider({ children }: { children: ReactNode }) {
-  const { tasks } = useAppSelector((state) => state.tasks);
-
-  const boards = sortTasks(tasks).map((tasks, index) => {
-    return { id: index++, tasks };
-  });
-
-  const [isBoards, setBoards] = useState(boards);
+  const { boards: isBoards } = useAppSelector((state) => state.tasks);
+  const dispatch = useAppDispatch();
+  // const [isBoards, setBoards] = useState(boards);
   const [isCurrentBoard, setCurrentBoard] = useState<IBoard | null>(null);
   const [isCurrentTask, setCurrentTask] = useState<ITask | null>(null);
 
@@ -73,17 +66,22 @@ export function DragContextProvider({ children }: { children: ReactNode }) {
     e.preventDefault();
 
     if (isCurrentTask && isCurrentBoard) {
+      // console.log(
+      //   `Current board and task are defined. Board: ${JSON.stringify(
+      //     isCurrentBoard
+      //   )}, Task:${JSON.stringify(isCurrentTask)}`
+      // );
       const currentIndex = isCurrentBoard?.tasks.indexOf(isCurrentTask);
 
       if (currentIndex !== undefined) {
-        isCurrentBoard?.tasks?.splice(currentIndex, 1);
+        isCurrentBoard?.tasks.splice(currentIndex, 1);
       }
 
       const dropIndex = board.tasks.indexOf(task);
 
       board.tasks?.splice(dropIndex + 1, 0, isCurrentTask);
 
-      const boardToSet = boards.map((b) => {
+      const boardToSet = isBoards.map((b) => {
         if (b.id === board.id) return board;
 
         if (b.id === isCurrentBoard.id) return isCurrentBoard;
@@ -91,7 +89,7 @@ export function DragContextProvider({ children }: { children: ReactNode }) {
         return b;
       });
 
-      setBoards(boardToSet);
+      dispatch(setBoards(boardToSet));
     }
   }
 
