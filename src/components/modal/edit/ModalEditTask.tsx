@@ -35,13 +35,18 @@ export function ModalEditTask() {
     }
   }
 
+  const dispatch = useAppDispatch();
+  const [isTitle, setTitle] = useState((task && task.title) || "");
+  const [isDescription, setDescription] = useState(
+    (task && task.description) || ""
+  );
+  const [isStatus, setStatus] = useState<TaskStatusEnum>(
+    (task && task.status) || TaskStatusEnum.TO_DO
+  );
+
   if ((value === "edit" || isAdd) && data && task) {
     // useTaskFormHook
     /////////////////////////////////////////
-    const dispatch = useAppDispatch();
-    const [isTitle, setTitle] = useState(task.title);
-    const [isDescription, setDescription] = useState(task.description);
-    const [isStatus, setStatus] = useState<TaskStatusEnum>(task.status);
 
     const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setTitle(event.target.value);

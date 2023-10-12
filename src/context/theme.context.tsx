@@ -8,12 +8,6 @@ export const ThemeContext = createContext<ITheme | null>(null);
 export function ThemeContextProvider({ children }: { children: ReactNode }) {
   const { isMode, setMode, toggleTheme, checkTheme, isLightTheme } = useTheme();
 
-  useEffect(() => {
-    if (isMode === "dark") {
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-
   return (
     <ThemeContext.Provider
       value={{ isMode, setMode, toggleTheme, checkTheme, isLightTheme }}
