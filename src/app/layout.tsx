@@ -1,8 +1,9 @@
-import { AppContainer } from "components/app/AppContainer";
+import { AppContainer } from "components/containers/AppContainer";
 import "styles/globals.scss";
 import type { Metadata } from "next";
-import { AppProvider } from "components/app/AppProvider";
+import { AppProvider } from "components/providers/AppProvider";
 import { Header } from "components/header/Header";
+import { Modal } from "components/modal/Modal";
 
 export const metadata: Metadata = {
   title: "Viatec Test App",
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <AppContainer>
       <AppProvider>
+        <Modal />
         <Header />
         {children}
       </AppProvider>

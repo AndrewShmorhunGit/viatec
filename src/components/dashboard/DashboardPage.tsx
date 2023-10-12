@@ -1,4 +1,4 @@
-import { DashboardContainer } from "components/containers/DashboardContainer";
+import { DashboardContainer } from "components/dashboard/containers/DashboardContainer";
 import { Boards } from "./boards/Boards";
 
 export function Dashboard() {

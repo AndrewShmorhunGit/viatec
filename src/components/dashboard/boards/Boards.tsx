@@ -1,12 +1,16 @@
-import { boards, tasks } from "data/static";
+"use client";
+
 import { Board } from "../board/Board";
-import { BoardsContainer } from "components/containers/BoardsContainer";
+import { BoardsContainer } from "components/dashboard/containers/BoardsContainer";
+import { sortTasks } from "utils/functions";
+import { useAppSelector } from "app/redux";
 
 export function Boards() {
-  const [toDoTasks, inProgressTasks, doneTasks] = boards;
+  const { tasks } = useAppSelector((state) => state.tasks);
+
   return (
     <BoardsContainer>
-      {boards.map((board, index) => {
+      {sortTasks(tasks).map((board, index) => {
         return <Board key={index} board={board} index={index} />;
       })}
     </BoardsContainer>

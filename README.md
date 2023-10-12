@@ -27,6 +27,7 @@ To do:
 
 Styles:
 
+- [ ] Status styles
 - [x] Get wrappers
 - [x] Check bootstrap
 - [ ] Get bootstrap components & classes
@@ -46,6 +47,10 @@ Router:
 Header:
 
 - [ ] Add Currency
+
+Footer:
+
+- Add footer with links
 
 Tests:
 

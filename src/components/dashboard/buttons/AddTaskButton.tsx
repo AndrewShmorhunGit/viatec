@@ -1,8 +1,20 @@
 "use client";
+import { setModal } from "app/redux";
 import { AddIcon } from "components/icons/AddIcon";
 import { useThemeContext } from "context/theme.context";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { TaskStatusEnum } from "interfaces/ITasks";
 
-export function AddTaskButton() {
+export function AddTaskButton({ index }: { index: number }) {
+  const dispatch = useAppDispatch();
+
+  const setInitialStatus = (index: number): TaskStatusEnum =>
+    index === 0
+      ? TaskStatusEnum.TO_DO
+      : index === 1
+      ? TaskStatusEnum.IN_PROGRESS
+      : TaskStatusEnum.DONE;
+
   const { isMode } = useThemeContext();
   return (
     <div
@@ -18,7 +30,14 @@ export function AddTaskButton() {
         justifyContent: "center",
         cursor: "pointer",
       }}
-      onClick={() => console.log("add")}
+      onClick={() =>
+        dispatch(
+          setModal({
+            value: "add",
+            data: setInitialStatus(index),
+          })
+        )
+      }
     >
       <AddIcon size={24} color={"#5795a7"} />
     </div>

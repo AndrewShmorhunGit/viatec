@@ -1,4 +1,4 @@
-import { TasksContainer } from "components/containers/TasksContsiner";
+import { TasksContainer } from "components/dashboard/containers/TasksContsiner";
 import { Task } from "../task/Task";
 import { ITask } from "interfaces/ITasks";
 
@@ -11,7 +11,7 @@ export function Tasks({ tasks }: { tasks: ITask[] }) {
           id={task.id}
           title={task.title}
           description={task.description}
-          completed={task.completed}
+          status={task.status}
         />
       ))}
     </TasksContainer>
