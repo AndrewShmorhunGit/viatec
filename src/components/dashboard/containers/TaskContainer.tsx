@@ -15,7 +15,7 @@ export function TaskContainer({
 
   return (
     <div
-      className={`p-4 ${isMode !== "dark" ? "bg-light" : "bg-dark"} ${
+      className={`p-4 ${isMode !== "dark" ? "bg-light" : "bg-task-dark"} ${
         styles.task_container
       }`}
       style={{

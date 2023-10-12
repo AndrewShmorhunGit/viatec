@@ -17,7 +17,7 @@ export function ModalDeleteTask() {
 
   if (value === "delete" && data && task) {
     return (
-      <div className="modal-content">
+      <div className="modal-content gap-4">
         {/* Header */}
         <div className="modal-header">
           <h2 className="modal-title">{`Deleting ${task.title} task`}</h2>
@@ -25,12 +25,10 @@ export function ModalDeleteTask() {
         </div>
         {/* Body */}
         <div className="modal-body">
-          <p
-            style={{ fontSize: "1.6rem" }}
-          >{`Are you shure you want to delete ${task.title} task?`}</p>
+          <p className="fs-4">{`Are you shure you want to delete ${task.title} task?`}</p>
         </div>
         {/* Footer */}
-        <div className="modal-footer" style={{ gap: "2rem" }}>
+        <div className="modal-footer gap-4">
           <ModalCloseButton />
           <ModalDeleteButton id={task.id} />
         </div>

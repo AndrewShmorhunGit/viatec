@@ -14,14 +14,9 @@ export function ModalEditInputs({
   return (
     // refactoring as FormInput, FormTextArea, FormSelect
     <div
-      className="form-floating"
+      className="form-floating d-flex flex-column gap-3 fs-4 pb-4"
       style={{
         maxWidth: "48rem",
-        display: "flex",
-        flexDirection: "column",
-        gap: "2rem",
-        fontSize: "1.4em",
-        paddingBottom: "4rem",
       }}
     >
       <div className="mb-3">
@@ -38,9 +33,8 @@ export function ModalEditInputs({
           </label>
         )}
         <input
-          style={{ fontSize: "1.2rem" }}
           type="text"
-          className={`form-control ${invalidTitle && "is-invalid"}`}
+          className={`form-control ${invalidTitle && "is-invalid"} fs-5`}
           id="formTitleInput"
           placeholder="Task title"
           value={isTitle}
@@ -61,7 +55,7 @@ export function ModalEditInputs({
           </label>
         )}
         <textarea
-          className={`form-control ${invalidDescription && "is-invalid"}`}
+          className={`form-control ${invalidDescription && "is-invalid"} fs-5`}
           id="formDescriptionInput"
           placeholder="Task description" // is-invalid
           value={isDescription}
@@ -74,9 +68,8 @@ export function ModalEditInputs({
           Status
         </label>
         <select
-          style={{ fontSize: "1.2rem" }}
           id="formStatusSelect"
-          className="form-select"
+          className="form-select fs-5"
           value={isStatus}
           onChange={handleStatusChange}
         >

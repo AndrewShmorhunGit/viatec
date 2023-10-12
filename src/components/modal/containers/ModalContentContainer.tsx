@@ -17,13 +17,9 @@ export function ModalContentContainer({ children }: { children: ReactNode }) {
     return (
       <div
         ref={refClickOutside}
-        className="absolute-center"
+        className="absolute-center h-auto rounded-3 position-relative"
         style={{
-          maxWidth: "60rem",
-          height: "auto",
-          borderRadius: "1.2rem",
-          cursor: "auto",
-          position: "relative",
+          maxWidth: "52rem",
           padding: "2rem 4rem",
           background: isMode === "dark" ? "#333333" : "#f6f7fc",
           color: isMode === "dark" ? "#f6f7fc" : "#333333",

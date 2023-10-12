@@ -5,9 +5,8 @@ export function ModalCloseButton() {
   return (
     <button
       type="button"
-      className="btn btn-secondary"
+      className="btn btn-secondary fs-4"
       data-bs-dismiss="modal"
-      style={{ fontSize: "1.6rem" }}
       onClick={() => dispatch(setModal({ value: "none", data: null }))}
     >
       Close
