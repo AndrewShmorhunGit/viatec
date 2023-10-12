@@ -1,8 +1,4 @@
 import { ReactNode } from "react";
 export function TasksContainer({ children }: { children: ReactNode }) {
-  return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      {children}
-    </div>
-  );
+  return <div className="d-flex flex-column gap-3">{children}</div>;
 }

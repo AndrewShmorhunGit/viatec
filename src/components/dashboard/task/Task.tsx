@@ -8,8 +8,7 @@ export function Task({ id, title, description, status }: ITask) {
   return (
     <TaskContainer status={status}>
       <Title title={title} />
-      <p style={{ fontSize: "1.6rem" }}>{description}</p>
-      {/* <div>{completed ? "task completed" : "todo task"}</div> */}
+      <p className="fs-5">{description}</p>
       <DeleteTaskButton taskId={id} />
       <EditTaskButton taskId={id} />
     </TaskContainer>

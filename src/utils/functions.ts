@@ -39,3 +39,16 @@ export const selectTaskColor = (status: TaskStatusEnum): string =>
     : status === TaskStatusEnum.IN_PROGRESS
     ? "#ffd43b"
     : "#5795a7";
+
+export const createTitle = (index: number): string => {
+  if (index === 0) return "to do";
+  if (index === 1) return "in progress";
+  return "done";
+};
+
+export const setInitialStatus = (index: number): TaskStatusEnum =>
+  index === 0
+    ? TaskStatusEnum.TO_DO
+    : index === 1
+    ? TaskStatusEnum.IN_PROGRESS
+    : TaskStatusEnum.DONE;

@@ -4,17 +4,6 @@ import { ReactNode } from "react";
 
 export function BoardContainer({ children }: { children: ReactNode }) {
   const { isMode } = useThemeContext();
-  return (
-    <div
-      style={{
-        background: isMode !== "dark" ? "white" : "#323232",
-        borderRadius: "1.2rem",
-        boxShadow: "1px 2px 3px lightgrey",
-        height: "auto",
-        padding: "2rem",
-      }}
-    >
-      {children}
-    </div>
-  );
+  const theme = isMode !== "dark" ? "bg-white" : "bg-dark";
+  return <div className={`rounded shadow ${theme} p-4`}>{children}</div>;
 }

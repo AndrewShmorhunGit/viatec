@@ -1,1 +1,31 @@
+.task-btn {
+  border: none;
+  background: transparent;
+  position: absolute;
+  bottom: 0.8rem;
+}
 
+// Extend the base class to create specific classes
+.btn_delete {
+  @extend .task-btn !optional;
+  right: 3.8rem;
+}
+
+.btn_edit {
+  @extend .task-btn !optional;
+  right: 1.2rem;
+}
+
+.container_boards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 3.2rem;
+  height: 100%;
+}
+
+.task_container {
+  border-radius: 0.8rem;
+  cursor: grab;
+  border: 1px solid lightgray;
+  position: relative;
+}
