@@ -1,18 +1,12 @@
-import { TasksContainer } from "components/dashboard/containers/TasksContsiner";
+import { TasksContainer } from "../containers/TasksContainer";
 import { Task } from "../task/Task";
-import { ITask } from "interfaces/ITasks";
+import { IBoard } from "interfaces/ITasks";
 
-export function Tasks({ tasks }: { tasks: ITask[] }) {
+export function Tasks({ board }: { board: IBoard }) {
   return (
     <TasksContainer>
-      {tasks.map((task) => (
-        <Task
-          key={task.id}
-          id={task.id}
-          title={task.title}
-          description={task.description}
-          status={task.status}
-        />
+      {board.tasks.map((task) => (
+        <Task key={task.id} task={task} board={board} />
       ))}
     </TasksContainer>
   );

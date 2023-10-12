@@ -2,8 +2,15 @@
 import { useThemeContext } from "context/theme.context";
 import { ReactNode } from "react";
 
-export function BoardContainer({ children }: { children: ReactNode }) {
+export function BoardContainer({
+  index,
+  children,
+}: {
+  index: number;
+  children: ReactNode;
+}) {
   const { isMode } = useThemeContext();
+
   return (
     <div
       style={{
