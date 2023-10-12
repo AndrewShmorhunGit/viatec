@@ -39,6 +39,7 @@ export function ModalEditInputs({
           placeholder="Task title"
           value={isTitle}
           onChange={handleTitleChange}
+          required
         />
       </div>
       <div>
@@ -61,6 +62,7 @@ export function ModalEditInputs({
           value={isDescription}
           onChange={handleDescriptionChange}
           style={{ height: "100px", fontSize: "1.2rem" }}
+          required
         />
       </div>
       <div>
