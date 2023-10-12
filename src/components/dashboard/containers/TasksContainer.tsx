@@ -1,4 +1,6 @@
+import { IBoard } from "interfaces/ITasks";
 import { ReactNode } from "react";
+
 export function TasksContainer({ children }: { children: ReactNode }) {
   return (
     <div
