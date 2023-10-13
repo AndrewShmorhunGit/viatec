@@ -6,7 +6,7 @@ import { useDragContext } from "context/drag.context";
 import { useAppSelector } from "hooks/useAppDispatch";
 
 export function Boards() {
-  const { isBoards } = useAppSelector((state) => state.tasks);
+  const { isBoards } = useAppSelector((state) => state.boards);
   // console.log(isBoards);
 
   return (

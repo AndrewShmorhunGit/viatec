@@ -26,7 +26,7 @@ interface IDrag {
 export const DragContext = createContext<IDrag | null>(null);
 
 export function DragContextProvider({ children }: { children: ReactNode }) {
-  const { isBoards } = useAppSelector((state) => state.tasks);
+  const { isBoards } = useAppSelector((state) => state.boards);
   const dispatch = useAppDispatch();
   const [isCurrentBoard, setCurrentBoard] = useState<IBoard | null>(null);
   const [isCurrentTask, setCurrentTask] = useState<ITask | null>(null);
@@ -39,7 +39,7 @@ export function DragContextProvider({ children }: { children: ReactNode }) {
       target.role?.includes("task-") && !isTaskContainer;
     if (isTaskContainer) {
       target.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
-      target.style.transition = "all 0.3s ease-in-out";
+      target.style.transition = "box-shadow 0.3s ease-in-out";
     }
 
     if (isContainerChildren && target.parentElement) {
@@ -95,13 +95,6 @@ export function DragContextProvider({ children }: { children: ReactNode }) {
       tasks: isCurrentBoard.tasks.filter((t) => t !== isCurrentTask),
     };
 
-    if (isCurrentBoard.id === board.id) {
-      const updatedDraggedBoard = {
-        ...isCurrentBoard,
-        tasks: isCurrentBoard.tasks.filter((t) => t !== isCurrentTask),
-      };
-    }
-
     const dropIndex = board.tasks.indexOf(task);
 
     // Insert the currentTask into the desired position in the board tasks
@@ -119,9 +112,16 @@ export function DragContextProvider({ children }: { children: ReactNode }) {
 
     // Update the boards array
     const boardsToSet = isBoards.map((b) => {
+      if (board.id === b.id && currentBoard.id === b.id) {
+        return {
+          ...updatedBoard,
+          tasks: updatedBoard.tasks.filter((t) => t !== isCurrentTask),
+        };
+      }
       if (b.id === board.id) {
         return updatedBoard;
       }
+
       if (b.id === currentBoard.id) {
         return currentBoard;
       }
@@ -130,29 +130,6 @@ export function DragContextProvider({ children }: { children: ReactNode }) {
 
     dispatch(setBoards(boardsToSet));
   }
-
-  // function dropCardHandler(e: React.DragEvent<HTMLDivElement>, board: IBoard) {
-  //   if (!isCurrentBoard || !isCurrentTask) {
-  //     return;
-  //   }
-  //   const currentBoard = { ...isCurrentBoard };
-  //   const currentTask = { ...isCurrentTask };
-  //   const currentIndex = currentBoard.tasks.indexOf(currentTask);
-
-  //   const updatedTasks = currentBoard.tasks.filter(
-  //     (_task, index) => index !== currentIndex
-  //   );
-
-  //   const updatedBoard = { ...currentBoard, tasks: updatedTasks };
-
-  //   const boardToSet = isBoards.map((b) => {
-  //     if (b.id === board.id) return board;
-  //     if (b.id === updatedBoard.id) return updatedBoard;
-  //     return b;
-  //   });
-
-  //   dispatch(setBoards(boardToSet));
-  // }
 
   function dropCardHandler(e: React.DragEvent<HTMLDivElement>, board: IBoard) {
     e.preventDefault();
@@ -167,7 +144,6 @@ export function DragContextProvider({ children }: { children: ReactNode }) {
 
     const dropIndex = board.tasks.indexOf(isCurrentTask);
 
-    // Insert the currentTask into the desired position in the board tasks
     const updatedBoardTasks = [
       ...board.tasks.slice(0, dropIndex + 1),
       { ...isCurrentTask, status: setInitialStatus(board.id) },
@@ -179,7 +155,6 @@ export function DragContextProvider({ children }: { children: ReactNode }) {
       tasks: updatedBoardTasks,
     };
 
-    // Update the boards array
     const boardsToSet = isBoards.map((b) => {
       if (b.id === board.id) {
         return updatedBoard;

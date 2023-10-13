@@ -1,28 +1,26 @@
 "use client";
-import {
-  addTask,
-  setModal,
-  updateTask,
-  useAppDispatch,
-  useAppSelector,
-} from "app/redux";
+import { addTask, setModal, updateTask, useAppDispatch } from "app/redux";
 import { ModalCloseX } from "../buttons/ModalCloseX";
 import { ModalCloseButton } from "../buttons/ModalCloseButton";
-import { ITask, TaskStatusEnum } from "interfaces/ITasks";
-import { getTaskById } from "utils/functions";
+import { IBoard, ITask, TaskStatusEnum } from "interfaces/ITasks";
+import { getTaskById, getTasksFromBoards } from "utils/functions";
 import { ModalEditInputs } from "./ModalEditInputs";
 import { FormEvent, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-// Generate a UUID
-
-export function ModalEditTask() {
-  // useTaskInModal hook
-  const { value, data } = useAppSelector((state) => state.modal);
-  // need isBoards
-  const { tasks } = useAppSelector((store) => store.tasks);
+export function ModalEditTask({
+  value,
+  data,
+  boards,
+}: {
+  value: string;
+  data: string;
+  boards: IBoard[];
+}) {
+  const tasks = getTasksFromBoards(boards);
   let task: ITask | null = null;
   const isAdd = value === "add";
+
   if (data) {
     if (isAdd) {
       task = {
@@ -32,7 +30,6 @@ export function ModalEditTask() {
         status: data as TaskStatusEnum,
       };
     } else {
-      // add function getTaskById
       task = data ? getTaskById(data, tasks) : null;
     }
   }

@@ -27,10 +27,10 @@ To do:
 
 Styles:
 
-- [ ] Status styles
+- [x] Status styles
 - [x] Get wrappers
 - [x] Check bootstrap
-- [ ] Get bootstrap components & classes
+- [x] Get bootstrap components & classes
 - [x] Create icons
 - [x] Manage Buttons
 - [x] Add theme button
@@ -53,6 +53,26 @@ Footer:
 
 - [x] Add footer with links
 
+Refactoring:
+
+- [ ] Components structure
+- [ ] Theme variables
+- [ ] Theme environment
+- [ ] Utils
+- [ ] Drag and Drop
+- [ ] Hooks
+- [ ] Components rendering
+- [ ] Prop drilling
+
+Features:
+
+- [ ] Upgrade "add" and "edit" form
+- [ ] Local storage
+- [ ] Authentication
+- [ ] Prisma
+- [ ] I18n
+- [ ] API
+
 Tests:
 
 - [ ] Add unit tests
@@ -60,3 +80,4 @@ Tests:
 Fix:
 
 - [x] Form validation
+- [ ] Broken tasks reducer functionality

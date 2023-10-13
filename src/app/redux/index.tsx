@@ -7,7 +7,7 @@ import {
   updateTask,
   deleteTask,
   setBoards,
-} from "./reducers/tasks/tasks.slice";
+} from "./reducers/boards/boards.slice";
 
 export { useAppSelector, useAppDispatch };
 
