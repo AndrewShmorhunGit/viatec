@@ -1,9 +1,10 @@
 "use client";
-import { useDragContext } from "context/drag.context";
+import styles from "styles/modules/dashboard.module.scss";
 import { useThemeContext } from "context/theme.context";
 import { IBoard, ITask } from "interfaces/ITasks";
 import { ReactNode } from "react";
 import { selectTaskColor } from "utils/functions";
+import { useDragContext } from "context/drag.context";
 export function TaskContainer({
   board,
   task,
@@ -23,15 +24,13 @@ export function TaskContainer({
   } = useDragContext();
   return (
     <div
-      className="task"
+      role="task-container"
+      className={`p-4 task ${isMode !== "dark" ? "bg-light" : "bg-task-dark"} ${
+        styles.task_container
+      }`}
       style={{
-        background: isMode !== "dark" ? "#f6f7fc" : " #494949 ",
-        borderRadius: "0.8rem",
-        cursor: "grab",
-        border: "1px solid lightgray",
         borderLeft: `8px solid ${selectTaskColor(task.status)}`,
         padding: "1.6rem 1.6rem 2rem 2.4rem",
-        position: "relative",
       }}
       draggable={true}
       onDragStart={(e: React.DragEvent<HTMLDivElement>) =>

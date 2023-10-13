@@ -1,11 +1,9 @@
 "use client";
-import { current } from "@reduxjs/toolkit";
-import { useAppSelector } from "app/redux";
-import { IBoard, ITask } from "interfaces/ITasks";
-// import { useDrag } from "hooks/useTheme";
 
+import { setBoards, useAppDispatch, useAppSelector } from "app/redux";
+import { IBoard, ITask } from "interfaces/ITasks";
 import { ReactNode, createContext, useContext, useState } from "react";
-import { sortTasks } from "utils/functions";
+import { setInitialStatus } from "utils/functions";
 
 interface IDrag {
   isBoards: IBoard[];
@@ -15,6 +13,7 @@ interface IDrag {
     task: ITask
   ) => void;
   dragEndHandler: (e: React.DragEvent<HTMLDivElement>) => void;
+  dropCardHandler: (e: React.DragEvent<HTMLDivElement>, board: IBoard) => void;
   dropHandler: (
     e: React.DragEvent<HTMLDivElement>,
     board: IBoard,
@@ -27,33 +26,42 @@ interface IDrag {
 export const DragContext = createContext<IDrag | null>(null);
 
 export function DragContextProvider({ children }: { children: ReactNode }) {
-  const { tasks } = useAppSelector((state) => state.tasks);
-
-  const boards = sortTasks(tasks).map((tasks, index) => {
-    return { id: index++, tasks };
-  });
-
-  const [isBoards, setBoards] = useState(boards);
+  const { isBoards } = useAppSelector((state) => state.boards);
+  const dispatch = useAppDispatch();
   const [isCurrentBoard, setCurrentBoard] = useState<IBoard | null>(null);
   const [isCurrentTask, setCurrentTask] = useState<ITask | null>(null);
 
   function dragOverHandler(e: React.DragEvent<HTMLDivElement>) {
     e.preventDefault();
     const target = e.target as HTMLDivElement;
-    if (target.className) {
-      if (target.className === "task")
-        target.style.boxShadow = "0px 4px 3px grey";
+    const isTaskContainer = target.role === "task-container";
+    const isContainerChildren =
+      target.role?.includes("task-") && !isTaskContainer;
+    if (isTaskContainer) {
+      target.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+      target.style.transition = "box-shadow 0.3s ease-in-out";
+    }
+
+    if (isContainerChildren && target.parentElement) {
+      target.parentElement.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
     }
   }
 
   function dragLeaveHandler(e: React.DragEvent<HTMLDivElement>) {
+    // boiler play code
     const target = e.target as HTMLDivElement;
     target.style.boxShadow = "none";
+    if (target.parentElement) {
+      target.parentElement.style.boxShadow = "none";
+    }
   }
 
   function dragEndHandler(e: React.DragEvent<HTMLDivElement>) {
     const target = e.target as HTMLDivElement;
     target.style.boxShadow = "none";
+    if (target.parentElement) {
+      target.parentElement.style.boxShadow = "none";
+    }
   }
 
   function dragStartHandler(
@@ -71,28 +79,93 @@ export function DragContextProvider({ children }: { children: ReactNode }) {
     task: ITask
   ) {
     e.preventDefault();
+    const target = e.target as HTMLDivElement;
+    target.style.boxShadow = "none";
+    if (target.parentElement) {
+      target.parentElement.style.boxShadow = "none";
+    }
 
-    if (isCurrentTask && isCurrentBoard) {
-      const currentIndex = isCurrentBoard?.tasks.indexOf(isCurrentTask);
+    if (!isCurrentBoard || !isCurrentTask) {
+      return;
+    }
 
-      if (currentIndex !== undefined) {
-        isCurrentBoard?.tasks?.splice(currentIndex, 1);
+    // Create new arrays with updated tasks
+    const currentBoard = {
+      ...isCurrentBoard,
+      tasks: isCurrentBoard.tasks.filter((t) => t !== isCurrentTask),
+    };
+
+    const dropIndex = board.tasks.indexOf(task);
+
+    // Insert the currentTask into the desired position in the board tasks
+    const updatedBoardTasks = [
+      ...board.tasks.slice(0, dropIndex + 1),
+      { ...isCurrentTask, status: setInitialStatus(board.id) },
+      ...board.tasks.slice(dropIndex + 1),
+    ];
+
+    // Create a new board object with the updated tasks
+    const updatedBoard = {
+      ...board,
+      tasks: updatedBoardTasks,
+    };
+
+    // Update the boards array
+    const boardsToSet = isBoards.map((b) => {
+      if (board.id === b.id && currentBoard.id === b.id) {
+        return {
+          ...updatedBoard,
+          tasks: updatedBoard.tasks.filter((t) => t !== isCurrentTask),
+        };
+      }
+      if (b.id === board.id) {
+        return updatedBoard;
       }
 
-      const dropIndex = board.tasks.indexOf(task);
+      if (b.id === currentBoard.id) {
+        return currentBoard;
+      }
+      return b;
+    });
 
-      board.tasks?.splice(dropIndex + 1, 0, isCurrentTask);
+    dispatch(setBoards(boardsToSet));
+  }
 
-      const boardToSet = boards.map((b) => {
-        if (b.id === board.id) return board;
-
-        if (b.id === isCurrentBoard.id) return isCurrentBoard;
-
-        return b;
-      });
-
-      setBoards(boardToSet);
+  function dropCardHandler(e: React.DragEvent<HTMLDivElement>, board: IBoard) {
+    e.preventDefault();
+    if (!isCurrentBoard || !isCurrentTask) {
+      return;
     }
+
+    const currentBoard = {
+      ...isCurrentBoard,
+      tasks: isCurrentBoard.tasks.filter((t) => t !== isCurrentTask),
+    };
+
+    const dropIndex = board.tasks.indexOf(isCurrentTask);
+
+    const updatedBoardTasks = [
+      ...board.tasks.slice(0, dropIndex + 1),
+      { ...isCurrentTask, status: setInitialStatus(board.id) },
+      ...board.tasks.slice(dropIndex + 1),
+    ];
+
+    const updatedBoard = {
+      ...board,
+      tasks: updatedBoardTasks,
+    };
+
+    const boardsToSet = isBoards.map((b) => {
+      if (b.id === board.id) {
+        return updatedBoard;
+      }
+      if (b.id === currentBoard.id) {
+        return currentBoard;
+      }
+      return b;
+    });
+
+    dispatch(setBoards(boardsToSet));
   }
 
   return (
@@ -102,6 +175,7 @@ export function DragContextProvider({ children }: { children: ReactNode }) {
         dragStartHandler,
         dragEndHandler,
         dropHandler,
+        dropCardHandler,
         dragOverHandler,
         dragLeaveHandler,
       }}

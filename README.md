@@ -27,10 +27,10 @@ To do:
 
 Styles:
 
-- [ ] Status styles
+- [x] Status styles
 - [x] Get wrappers
 - [x] Check bootstrap
-- [ ] Get bootstrap components & classes
+- [x] Get bootstrap components & classes
 - [x] Create icons
 - [x] Manage Buttons
 - [x] Add theme button
@@ -39,19 +39,45 @@ Styles:
 
 Router:
 
-- [ ] Set metadata
-- [ ] Manage routes
+- [x] Set metadata
+- [x] Manage routes
 - [ ] ErrorPage
 - [ ] LoadingPage
 
 Header:
 
 - [ ] Add Currency
+- [ ] Date
 
 Footer:
 
-- Add footer with links
+- [x] Add footer with links
+
+Refactoring:
+
+- [ ] Components structure
+- [ ] Theme variables
+- [ ] Theme environment
+- [ ] Utils
+- [ ] Drag and Drop
+- [ ] Hooks
+- [ ] Components rendering
+- [ ] Prop drilling
+
+Features:
+
+- [ ] Upgrade "add" and "edit" form
+- [ ] Local storage
+- [ ] Authentication
+- [ ] Prisma
+- [ ] I18n
+- [ ] API
 
 Tests:
 
 - [ ] Add unit tests
+
+Fix:
+
+- [x] Form validation
+- [ ] Broken tasks reducer functionality

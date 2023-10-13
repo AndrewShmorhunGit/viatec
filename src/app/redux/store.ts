@@ -1,10 +1,10 @@
 "use client";
-import tasksReducer from "app/redux/reducers/tasks/tasks.slice";
+import boardsReducer from "app/redux/reducers/boards/boards.slice";
 import modalReducer from "app/redux/reducers/modal/modal.slice";
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
 const rootReducer = combineReducers({
-  tasks: tasksReducer,
+  boards: boardsReducer,
   modal: modalReducer,
 });
 

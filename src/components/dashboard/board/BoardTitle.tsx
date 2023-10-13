@@ -1,16 +1,7 @@
-export function BoardTitle({ index }: { index: number }) {
-  const createTitle = (index: number): string => {
-    if (index === 0) return "to do";
-    if (index === 1) return "in progress";
-    return "done";
-  };
+import { createTitle } from "utils/functions";
 
+export function BoardTitle({ index }: { index: number }) {
   return (
-    <h3
-      className="text-center"
-      style={{ textTransform: "capitalize", paddingBottom: "1.2rem" }}
-    >
-      {createTitle(index)}
-    </h3>
+    <h3 className="text-center text-capitalize pb-4">{createTitle(index)}</h3>
   );
 }

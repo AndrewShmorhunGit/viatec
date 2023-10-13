@@ -6,13 +6,17 @@ import { Title } from "./Title";
 
 export function Task({ board, task }: { board: IBoard; task: ITask }) {
   return (
-    <TaskContainer task={task} board={board}>
-      <>
-        <Title title={task.title} />
-        <p style={{ fontSize: "1.6rem" }}>{task.description}</p>
-        <DeleteTaskButton taskId={task.id} />
-        <EditTaskButton taskId={task.id} />
-      </>
+    <TaskContainer board={board} task={task}>
+      <Title title={task.title} />
+      <p
+        role="task-description"
+        className="fs-5"
+        style={{ paddingRight: "4rem" }}
+      >
+        {task.description}
+      </p>
+      <EditTaskButton taskId={task.id} />
+      <DeleteTaskButton taskId={task.id} />
     </TaskContainer>
   );
 }
