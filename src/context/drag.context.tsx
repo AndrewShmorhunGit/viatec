@@ -35,9 +35,15 @@ export function DragContextProvider({ children }: { children: ReactNode }) {
   function dragOverHandler(e: React.DragEvent<HTMLDivElement>) {
     e.preventDefault();
     const target = e.target as HTMLDivElement;
-    if (target.className) {
-      if (target.className === "task")
-        target.style.boxShadow = "0px 4px 3px grey";
+    const isTaskContainer = target.role === "task-container";
+    const isContainerChildren =
+      target.role?.includes("task-") && !isTaskContainer;
+    if (isTaskContainer) {
+      target.style.boxShadow = "0px 4px 3px grey";
+    }
+
+    if (isContainerChildren && target.parentElement) {
+      target.parentElement.style.boxShadow = "0px 4px 3px grey";
     }
   }
 
@@ -98,6 +104,9 @@ export function DragContextProvider({ children }: { children: ReactNode }) {
     task: ITask
   ) {
     e.preventDefault();
+
+    const target = e.target as HTMLDivElement;
+    target.style.boxShadow = "none";
 
     if (!isCurrentBoard || !isCurrentTask) {
       return;

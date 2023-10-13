@@ -27,4 +27,7 @@
   cursor: grab;
   border: 1px solid lightgray;
   position: relative;
+  &:hover {
+    box-shadow: 0px 4px 3px grey;
+  }
 }

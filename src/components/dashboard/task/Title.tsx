@@ -5,6 +5,7 @@ export function Title({ title }: { title: string }) {
   const { isMode } = useThemeContext();
   return (
     <h3
+      role="task-title"
       style={{
         color: isMode === "dark" ? "lightgrey" : "#5795a7",
         letterSpacing: ".1rem",
