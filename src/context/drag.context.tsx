@@ -28,7 +28,6 @@ export const DragContext = createContext<IDrag | null>(null);
 export function DragContextProvider({ children }: { children: ReactNode }) {
   const { isBoards } = useAppSelector((state) => state.tasks);
   const dispatch = useAppDispatch();
-  // const [isBoards, setBoards] = useState(boards);
   const [isCurrentBoard, setCurrentBoard] = useState<IBoard | null>(null);
   const [isCurrentTask, setCurrentTask] = useState<ITask | null>(null);
 
@@ -48,13 +47,20 @@ export function DragContextProvider({ children }: { children: ReactNode }) {
   }
 
   function dragLeaveHandler(e: React.DragEvent<HTMLDivElement>) {
+    // boiler play code
     const target = e.target as HTMLDivElement;
     target.style.boxShadow = "none";
+    if (target.parentElement) {
+      target.parentElement.style.boxShadow = "none";
+    }
   }
 
   function dragEndHandler(e: React.DragEvent<HTMLDivElement>) {
     const target = e.target as HTMLDivElement;
     target.style.boxShadow = "none";
+    if (target.parentElement) {
+      target.parentElement.style.boxShadow = "none";
+    }
   }
 
   function dragStartHandler(
@@ -66,47 +72,17 @@ export function DragContextProvider({ children }: { children: ReactNode }) {
     setCurrentTask(task);
   }
 
-  // function dropHandler(
-  //   e: React.DragEvent<HTMLDivElement>,
-  //   board: IBoard,
-  //   task: ITask
-  // ) {
-  //   e.preventDefault();
-
-  //   if (!isCurrentBoard || !isCurrentTask) {
-  //     return;
-  //   }
-  //   const currentBoard = { ...isCurrentBoard };
-  //   const currentTask = { ...isCurrentTask };
-
-  //   const currentIndex = currentBoard.tasks.indexOf(currentTask);
-
-  //   currentBoard.tasks.splice(currentIndex, 1);
-
-  //   const dropIndex = board.tasks.indexOf(task);
-
-  //   board.tasks.splice(dropIndex + 1, 0, currentTask);
-
-  //   const boardToSet = isBoards.map((b) => {
-  //     if (b.id === board.id) return board;
-
-  //     if (b.id === currentBoard.id) return currentBoard;
-
-  //     return b;
-  //   });
-
-  //   dispatch(setBoards(boardToSet));
-  // }
-
   function dropHandler(
     e: React.DragEvent<HTMLDivElement>,
     board: IBoard,
     task: ITask
   ) {
     e.preventDefault();
-
     const target = e.target as HTMLDivElement;
     target.style.boxShadow = "none";
+    if (target.parentElement) {
+      target.parentElement.style.boxShadow = "none";
+    }
 
     if (!isCurrentBoard || !isCurrentTask) {
       return;
@@ -118,14 +94,11 @@ export function DragContextProvider({ children }: { children: ReactNode }) {
       tasks: isCurrentBoard.tasks.filter((t) => t !== isCurrentTask),
     };
 
-    let boardToDrop = board;
-
     if (isCurrentBoard.id === board.id) {
-      const updatedBoardToDrop = {
+      const updatedDraggedBoard = {
         ...isCurrentBoard,
         tasks: isCurrentBoard.tasks.filter((t) => t !== isCurrentTask),
       };
-      boardToDrop;
     }
 
     const dropIndex = board.tasks.indexOf(task);

@@ -11,7 +11,7 @@ export function TasksContainer({
 }) {
   return (
     <div
-      className="d-flex flex-column gap-3 scroll-bar p-2"
+      className="d-flex flex-column gap-3 scroll-bar pb-2 px-2"
       style={{
         overflowY: "auto",
         maxHeight: "calc(100vh - 37.2rem)",

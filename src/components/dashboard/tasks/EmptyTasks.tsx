@@ -15,20 +15,9 @@ export function EmptyTasks() {
         background: isMode === "dark" ? "#343a40 " : "#f8f9fa",
       }}
     >
-      <div className="">
-        {/* <div
-          style={{
-            width: "12rem",
-            height: "12rem",
-            fontSize: "6.8rem",
-            border: "3px grey solid",
-            borderRadius: "50%",
-          }}
-        >
-          <p className="text-center">+</p>
-        </div> */}
-        <p style={{ fontSize: "4rem" }}>Add or Darg</p>
-      </div>
+      <p style={{ fontSize: "2.8rem", textDecoration: "underline" }}>
+        Add or Darg
+      </p>
     </div>
   );
 }
