@@ -2,16 +2,19 @@
 
 import { Board } from "../board/Board";
 import { BoardsContainer } from "components/dashboard/containers/BoardsContainer";
-import { sortTasks } from "utils/functions";
-import { useAppSelector } from "app/redux";
+import { useDragContext } from "context/drag.context";
+import { useAppSelector } from "hooks/useAppDispatch";
 
 export function Boards() {
-  const { tasks } = useAppSelector((state) => state.tasks);
+  const { isBoards } = useAppSelector((state) => state.boards);
+  // console.log(isBoards);
 
   return (
     <BoardsContainer>
-      {sortTasks(tasks).map((board, index) => {
-        return <Board key={index} board={board} index={index} />;
+      {isBoards.map((board, index) => {
+        return (
+          <Board key={index} board={{ id: index++, tasks: board.tasks }} />
+        );
       })}
     </BoardsContainer>
   );

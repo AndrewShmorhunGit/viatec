@@ -7,6 +7,7 @@ export function EditTaskButton({ taskId }: { taskId: string }) {
   const dispatch = useAppDispatch();
   return (
     <button
+      role="task-edit-btn"
       className={styles.btn_edit}
       onClick={() => dispatch(setModal({ value: "edit", data: taskId }))}
     >

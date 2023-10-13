@@ -27,4 +27,9 @@
   cursor: grab;
   border: 1px solid lightgray;
   position: relative;
+  &:hover {
+    transform: translateY(-1px);
+    // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+  }
 }

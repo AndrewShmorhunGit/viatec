@@ -1,15 +1,20 @@
-"use client";
-import { useAppSelector } from "app/redux";
-import { getTaskById } from "utils/functions";
+import { getTaskById, getTasksFromBoards } from "utils/functions";
 import { ModalCloseX } from "../buttons/ModalCloseX";
 import { ModalCloseButton } from "../buttons/ModalCloseButton";
 import { ModalDeleteButton } from "../buttons/ModalDeleteTaskButton";
-import { ITask } from "interfaces/ITasks";
+import { IBoard, ITask } from "interfaces/ITasks";
 
-export function ModalDeleteTask() {
-  // useTaskInModal hook
-  const { value, data } = useAppSelector((state) => state.modal);
-  const { tasks } = useAppSelector((store) => store.tasks);
+export function ModalDeleteTask({
+  value,
+  data,
+  boards,
+}: {
+  value: string;
+  data: string;
+  boards: IBoard[];
+}) {
+  const tasks = getTasksFromBoards(boards);
+
   let task: ITask | null = null;
   if (data) {
     task = data ? getTaskById(data, tasks) : null;

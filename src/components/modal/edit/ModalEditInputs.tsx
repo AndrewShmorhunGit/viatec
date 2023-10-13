@@ -1,4 +1,3 @@
-"use client";
 import { ITaskForm, TaskStatusEnum } from "interfaces/ITasks";
 
 export function ModalEditInputs({

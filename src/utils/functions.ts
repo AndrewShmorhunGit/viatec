@@ -1,4 +1,4 @@
-import { ITask, TaskStatusEnum } from "interfaces/ITasks";
+import { IBoard, ITask, TaskStatusEnum } from "interfaces/ITasks";
 
 export const sortTasks = (tasks: ITask[]): ITask[][] => {
   return tasks.reduce(
@@ -52,3 +52,22 @@ export const setInitialStatus = (index: number): TaskStatusEnum =>
     : index === 1
     ? TaskStatusEnum.IN_PROGRESS
     : TaskStatusEnum.DONE;
+
+export const getBoardByStatus = (status: TaskStatusEnum): number =>
+  status === TaskStatusEnum.TO_DO
+    ? 0
+    : status === TaskStatusEnum.IN_PROGRESS
+    ? 1
+    : 2;
+
+export const getBoardsFromTasks = (tasks: ITask[]): IBoard[] => {
+  return sortTasks(tasks).map((tasks, index) => {
+    return { id: index, tasks };
+  });
+};
+
+export const getTasksFromBoards = (boards: IBoard[]): ITask[] => {
+  let tasks: ITask[] = [];
+  boards.forEach((board) => tasks.push(...board.tasks));
+  return tasks;
+};
