@@ -6,7 +6,7 @@ import { sortTasks } from "utils/functions";
 
 const initialState: ITasksState = {
   tasks: tasks,
-  boards: sortTasks(tasks).map((tasks, index) => {
+  isBoards: sortTasks(tasks).map((tasks, index) => {
     return { id: index++, tasks };
   }),
 };
@@ -30,7 +30,7 @@ const tasksSlice = createSlice({
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
     setBoards: (state, action: PayloadAction<IBoard[]>) => {
-      state.boards = action.payload;
+      state.isBoards = action.payload;
     },
   },
 });
