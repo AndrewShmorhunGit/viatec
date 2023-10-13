@@ -1,6 +1,7 @@
 import { IBoard } from "interfaces/ITasks";
 import { ReactNode } from "react";
 import { EmptyTasks } from "../tasks/EmptyTasks";
+// import { useDragContext } from "context/drag.context";
 
 export function TasksContainer({
   board,
@@ -11,14 +12,14 @@ export function TasksContainer({
 }) {
   return (
     <div
-      className="d-flex flex-column gap-3 scroll-bar pb-2 px-2"
+      className="d-flex flex-column gap-3 scroll-bar py-1 px-2"
       style={{
         overflowY: "auto",
         maxHeight: "calc(100vh - 37.2rem)",
         minHeight: "10rem",
       }}
     >
-      {board.tasks.length ? children : <EmptyTasks />}
+      {board.tasks.length ? children : <EmptyTasks board={board} />}
     </div>
   );
 }
