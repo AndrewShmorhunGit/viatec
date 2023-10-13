@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export function MainLogo({ props }: { props: any }) {
+export function MainLogo() {
   return (
     <Image
       src="https://viatec.ua/img/header/logo.svg"

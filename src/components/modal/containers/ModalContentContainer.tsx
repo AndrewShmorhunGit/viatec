@@ -1,18 +1,10 @@
 "use client";
-import { setModal, useAppDispatch, useAppSelector } from "app/redux";
-import { useClickOutside } from "hooks/useClickOutside";
-import { ReactNode, useRef } from "react";
-import { useThemeContext } from "context/theme.context";
+
+import { ReactNode } from "react";
+import { useModalContent } from "hooks/useModalContent";
 
 export function ModalContentContainer({ children }: { children: ReactNode }) {
-  // useModalContent
-  const dispatch = useAppDispatch();
-  const { data, value } = useAppSelector((state) => state.modal);
-  const refClickOutside = useRef<HTMLDivElement | null>(null);
-  useClickOutside(refClickOutside, () =>
-    dispatch(setModal({ value: "none", data: null }))
-  );
-  const { isMode } = useThemeContext();
+  const { data, value, refClickOutside, theme } = useModalContent();
   if (value !== "none" && data) {
     return (
       <div
@@ -21,11 +13,11 @@ export function ModalContentContainer({ children }: { children: ReactNode }) {
         style={{
           maxWidth: "52rem",
           padding: "2rem 4rem",
-          background: isMode === "dark" ? "#333333" : "#f6f7fc",
-          color: isMode === "dark" ? "#f6f7fc" : "#333333",
+          background: theme,
+          color: theme,
         }}
       >
-        {data && children}
+        {children}
       </div>
     );
   }

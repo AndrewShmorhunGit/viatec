@@ -1,5 +1,6 @@
 "use client";
 import { useThemeContext } from "context/theme.context";
+import { palette } from "styles/palette";
 
 export function Title({ title }: { title: string }) {
   const { isMode } = useThemeContext();
@@ -7,7 +8,7 @@ export function Title({ title }: { title: string }) {
     <h3
       role="task-title"
       style={{
-        color: isMode === "dark" ? "lightgrey" : "#5795a7",
+        color: isMode === "dark" ? "lightgrey" : palette.main,
         letterSpacing: ".1rem",
       }}
     >

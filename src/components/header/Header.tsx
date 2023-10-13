@@ -5,7 +5,7 @@ import { Menu } from "./menu/Menu";
 export function Header() {
   return (
     <HeaderContainer>
-      <MainLogo props={undefined} />
+      <MainLogo />
       <Menu />
     </HeaderContainer>
   );

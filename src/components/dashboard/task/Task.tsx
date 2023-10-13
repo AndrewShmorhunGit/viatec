@@ -3,20 +3,16 @@ import { DeleteTaskButton } from "../buttons/DeleteTaskButton";
 import { EditTaskButton } from "../buttons/EditTaskButton";
 import { TaskContainer } from "components/dashboard/containers/TaskContainer";
 import { Title } from "./Title";
+import { Description } from "./Description";
 
 export function Task({ board, task }: { board: IBoard; task: ITask }) {
+  const { title, description, id } = task;
   return (
     <TaskContainer board={board} task={task}>
-      <Title title={task.title} />
-      <p
-        role="task-description"
-        className="fs-5"
-        style={{ paddingRight: "4rem" }}
-      >
-        {task.description}
-      </p>
-      <EditTaskButton taskId={task.id} />
-      <DeleteTaskButton taskId={task.id} />
+      <Title title={title} />
+      <Description text={description} />
+      <EditTaskButton taskId={id} />
+      <DeleteTaskButton taskId={id} />
     </TaskContainer>
   );
 }

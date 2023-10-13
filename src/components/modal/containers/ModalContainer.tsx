@@ -1,4 +1,3 @@
-"use client";
 import { useAppSelector } from "app/redux";
 
 export function ModalContainer({ children }: { children: React.ReactNode }) {

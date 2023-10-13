@@ -6,7 +6,7 @@ import { BoardTitle } from "./BoardTitle";
 
 export function Board({ board }: { board: IBoard }) {
   return (
-    <BoardContainer index={board.id}>
+    <BoardContainer>
       <BoardTitle index={board.id} />
       <Tasks board={board} />
       <AddTaskButton index={board.id} />
