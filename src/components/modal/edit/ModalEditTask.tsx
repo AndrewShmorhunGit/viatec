@@ -19,6 +19,7 @@ import { v4 as uuidv4 } from "uuid";
 export function ModalEditTask() {
   // useTaskInModal hook
   const { value, data } = useAppSelector((state) => state.modal);
+  // need isBoards
   const { tasks } = useAppSelector((store) => store.tasks);
   let task: ITask | null = null;
   const isAdd = value === "add";
@@ -31,6 +32,7 @@ export function ModalEditTask() {
         status: data as TaskStatusEnum,
       };
     } else {
+      // add function getTaskById
       task = data ? getTaskById(data, tasks) : null;
     }
   }
