@@ -1,73 +1,98 @@
-import { ITask } from "interfaces/ITasks";
+import { ITask, TaskStatusEnum } from "interfaces/ITasks";
+import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
 
-export const projectTasks: ITask[] = [
+export const tasks: ITask[] = [
   {
     id: "1",
-    name: "Project Kickoff Meeting",
+    title: "Project Kickoff Meeting",
     description:
       "Schedule and conduct a kickoff meeting with the project team.",
-    completed: false,
+    status: TaskStatusEnum.DONE,
   },
   {
     id: "2",
-    name: "Create Project Plan",
+    title: "Create Project Plan",
     description:
       "Develop a detailed project plan outlining tasks, timelines, and resources.",
-    completed: true,
+    status: TaskStatusEnum.DONE,
   },
   {
     id: "3",
-    name: "Gather Requirements",
+    title: "Gather Requirements",
     description: "Collect and document project requirements from stakeholders.",
-    completed: false,
+    status: TaskStatusEnum.DONE,
   },
   {
     id: "4",
-    name: "Design Phase",
+    title: "Design Phase",
     description:
       "Initiate the design phase of the project, including wireframes and mockups.",
-    completed: true,
+    status: TaskStatusEnum.IN_PROGRESS,
   },
   {
     id: "5",
-    name: "Development Sprint 1",
+    title: "Development Sprint",
     description:
       "Start the first development sprint to build project features.",
-    completed: false,
+    status: TaskStatusEnum.IN_PROGRESS,
   },
   {
     id: "6",
-    name: "User Testing",
+    title: "User Testing",
     description:
       "Conduct user testing sessions to gather feedback on the project.",
-    completed: true,
+    status: TaskStatusEnum.IN_PROGRESS,
   },
   {
     id: "7",
-    name: "Bug Fixes and Enhancements",
+    title: "Bug Fixes and Enhancements",
     description:
       "Address and fix reported bugs and make requested enhancements.",
-    completed: false,
+    status: TaskStatusEnum.TO_DO,
   },
   {
     id: "8",
-    name: "Documentation",
+    title: "Documentation",
     description:
       "Create project documentation, including user manuals and technical guides.",
-    completed: true,
+    status: TaskStatusEnum.TO_DO,
   },
   {
     id: "9",
-    name: "Quality Assurance Testing",
+    title: "Quality Assurance Testing",
     description:
       "Perform thorough QA testing to ensure the project meets quality standards.",
-    completed: false,
+    status: TaskStatusEnum.TO_DO,
   },
   {
     id: "10",
-    name: "Project Closure",
+    title: "Project Closure",
     description:
       "Finalize the project, provide training, and conduct a project closure meeting.",
-    completed: false,
+    status: TaskStatusEnum.TO_DO,
+  },
+];
+
+const toDoTasks = tasks.filter((task, index) => index < 3 && task);
+const inProgressTasks = tasks.filter(
+  (task, index) => index > 2 && index < 7 && task
+);
+const doneTasks = tasks.filter((task, index) => index > 6 && task);
+
+export const boards = [toDoTasks, inProgressTasks, doneTasks];
+
+export const content =
+  "Developed by Shmorhun Andrew for testing porpoises. All rights reserved.";
+
+export const year = new Date().getFullYear();
+
+export const links = [
+  {
+    icon: <AiFillGithub size={20} style={{ color: "#5795a7" }} />,
+    link: "https://github.com/AndrewShmorhunGit/viatec",
+  },
+  {
+    icon: <AiFillLinkedin size={20} style={{ color: "#5795a7" }} />,
+    link: "https://www.linkedin.com/in/andrew-shmorhun-850a76209/",
   },
 ];

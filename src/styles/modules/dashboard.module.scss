@@ -1,0 +1,35 @@
+.task-btn {
+  border: none;
+  background: transparent;
+  position: absolute;
+  bottom: 0.8rem;
+}
+
+.btn_delete {
+  @extend .task-btn !optional;
+  right: 1.2rem;
+}
+
+.btn_edit {
+  @extend .task-btn !optional;
+  right: 3.8rem;
+}
+
+.container_boards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 3.2rem;
+  max-height: 85%;
+}
+
+.task_container {
+  border-radius: 0.8rem;
+  cursor: grab;
+  border: 1px solid lightgray;
+  position: relative;
+  &:hover {
+    transform: translateY(-1px);
+    // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+  }
+}

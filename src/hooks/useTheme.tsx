@@ -11,12 +11,11 @@ export const useTheme = () => {
     if (isMode === "dark") {
       document.documentElement.classList.add("dark");
     }
-  }, []);
+  }, [isMode]);
 
   const toggleTheme = () => {
     isMode === "light" ? setMode("dark") : setMode("light");
     document.documentElement.classList.toggle("dark");
-    console.log(isMode);
   };
 
   const checkTheme = isMode === "light" ? false : true;

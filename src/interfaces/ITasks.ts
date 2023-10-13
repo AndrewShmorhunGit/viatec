@@ -1,10 +1,35 @@
+export interface IBoard {
+  id: number;
+  tasks: ITask[];
+}
+
+export enum TaskStatusEnum {
+  TO_DO = "TO_DO",
+  IN_PROGRESS = "IN_PROGRESS",
+  DONE = "DONE",
+}
+
 export interface ITask {
   id: string;
-  name: string;
+  title: string;
   description: string;
-  completed: boolean;
+  status: TaskStatusEnum;
 }
 
 export interface ITasksState {
   tasks: ITask[];
+  isBoards: IBoard[];
+}
+
+export interface ITaskForm {
+  invalidTitle: boolean;
+  invalidDescription: boolean;
+  isTitle: string;
+  isDescription: string;
+  isStatus: TaskStatusEnum;
+  handleTitleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleDescriptionChange: (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => void;
+  handleStatusChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }

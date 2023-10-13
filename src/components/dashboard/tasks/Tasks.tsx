@@ -1,18 +1,13 @@
-import { projectTasks } from "data/static";
+import { TasksContainer } from "../containers/TasksContainer";
 import { Task } from "../task/Task";
+import { IBoard } from "interfaces/ITasks";
 
-export function Tasks() {
+export function Tasks({ board }: { board: IBoard }) {
   return (
-    <>
-      {projectTasks.map((task) => (
-        <Task
-          key={task.id}
-          id={task.id}
-          name={task.name}
-          description={task.description}
-          completed={task.completed}
-        />
+    <TasksContainer board={board}>
+      {board.tasks.map((task) => (
+        <Task key={task.id} task={task} board={board} />
       ))}
-    </>
+    </TasksContainer>
   );
 }
