@@ -16,7 +16,7 @@ export function EmptyTasks({ board }: { board: IBoard }) {
       className="d-flex align-items-center justify-content-center fs-1 pointer"
       style={{
         border: "1px solid lightgray",
-        minHeight: "50rem",
+        height: "42rem",
         borderRadius: "1.2rem",
         opacity: 0.6,
         background: isMode === "dark" ? "#343a40 " : "#f8f9fa",
