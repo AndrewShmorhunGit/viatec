@@ -24,7 +24,8 @@ export function TaskContainer({
   } = useDragContext();
   return (
     <div
-      className={`p-4 ${isMode !== "dark" ? "bg-light" : "bg-task-dark"} ${
+      role="task-container"
+      className={`p-4 task ${isMode !== "dark" ? "bg-light" : "bg-task-dark"} ${
         styles.task_container
       }`}
       style={{

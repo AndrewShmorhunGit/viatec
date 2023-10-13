@@ -9,6 +9,7 @@ export function DeleteTaskButton({ taskId }: { taskId: string }) {
 
   return (
     <button
+      role="task-delete-btn"
       className={styles.btn_delete}
       onClick={() => dispatch(setModal({ value: "delete", data: taskId }))}
     >
