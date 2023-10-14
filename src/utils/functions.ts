@@ -71,3 +71,28 @@ export const getTasksFromBoards = (boards: IBoard[]): ITask[] => {
   boards.forEach((board) => tasks.push(...board.tasks));
   return tasks;
 };
+
+export function removeBoxShadow(target: HTMLDivElement | null) {
+  if (target) {
+    target.style.boxShadow = "none";
+    const parentElement = target.parentElement as HTMLDivElement;
+    if (parentElement) {
+      parentElement.style.boxShadow = "none";
+    }
+  }
+}
+
+export function applyBoxShadow(target: HTMLDivElement) {
+  const isTaskContainer = target.getAttribute("role") === "task-container";
+  const isContainerChildren =
+    target.getAttribute("role")?.includes("task-") && !isTaskContainer;
+
+  if (isTaskContainer) {
+    target.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+    target.style.transition = "box-shadow 0.3s ease-in-out";
+  }
+
+  if (isContainerChildren && target.parentElement) {
+    target.parentElement.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+  }
+}
