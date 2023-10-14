@@ -45,49 +45,54 @@ export const useDrag = () => {
   ) {
     e.preventDefault();
     const target = e.target as HTMLDivElement;
-    removeBoxShadow(target);
+    target.style.boxShadow = "none";
+    if (target.parentElement) {
+      target.parentElement.style.boxShadow = "none";
+    }
 
     if (!isCurrentBoard || !isCurrentTask) {
       return;
     }
 
-    // Create a copy of the current task with updated status
-    const updatedTask: ITask = {
-      ...isCurrentTask,
-      status: setInitialStatus(board.id),
-    };
-
-    // Remove the current task from the current board
+    // Create new arrays with updated tasks
     const currentBoard = {
       ...isCurrentBoard,
       tasks: isCurrentBoard.tasks.filter((t) => t !== isCurrentTask),
     };
 
-    // Find the index where the task should be dropped in the target board
     const dropIndex = board.tasks.indexOf(task);
 
-    // Create the updated array of tasks for the target board
+    // Insert the currentTask into the desired position in the board tasks
     const updatedBoardTasks = [
       ...board.tasks.slice(0, dropIndex + 1),
-      updatedTask,
+      { ...isCurrentTask, status: setInitialStatus(board.id) },
       ...board.tasks.slice(dropIndex + 1),
     ];
 
-    // Create the updated board with the new tasks
-    const updatedBoard: IBoard = { ...board, tasks: updatedBoardTasks };
+    // Create a new board object with the updated tasks
+    const updatedBoard = {
+      ...board,
+      tasks: updatedBoardTasks,
+    };
 
-    // Update the list of boards
+    // Update the boards array
     const boardsToSet = isBoards.map((b) => {
+      if (board.id === b.id && currentBoard.id === b.id) {
+        return {
+          ...updatedBoard,
+          tasks: updatedBoard.tasks.filter((t) => t !== isCurrentTask),
+        };
+      }
       if (b.id === board.id) {
         return updatedBoard;
       }
+
       if (b.id === currentBoard.id) {
         return currentBoard;
       }
       return b;
     });
 
-    // Set new redux boards state
     dispatch(setBoards(boardsToSet));
   }
 
