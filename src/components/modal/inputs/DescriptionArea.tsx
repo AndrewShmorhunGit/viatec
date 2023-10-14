@@ -13,8 +13,9 @@ export function DescriptionArea({
     <div>
       {invalidDescription ? (
         <label
+          className="text-capitalize pb-2"
           htmlFor="formDescriptionInput"
-          style={{ color: "orangered", textTransform: "capitalize" }}
+          style={{ color: "orangered" }}
         >
           Description must be filled
         </label>

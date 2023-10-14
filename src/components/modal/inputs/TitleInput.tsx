@@ -8,10 +8,11 @@ export function TitleInput({
   handleTitleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
-    <div className="mb-3">
+    <div className="py-4">
       {invalidTitle ? (
         <label
           htmlFor="formTitleInput"
+          className="text-capitalize pb-2"
           style={{ color: "orangered", textTransform: "capitalize" }}
         >
           Title must be filled

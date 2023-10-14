@@ -9,7 +9,7 @@ export function StatusSelect({
   handleStatusChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 }) {
   return (
-    <div>
+    <div className="py-4">
       <label htmlFor="formStatusSelect" className="form-label">
         Status
       </label>

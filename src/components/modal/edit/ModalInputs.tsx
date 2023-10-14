@@ -1,8 +1,8 @@
 import { ITaskForm } from "interfaces/ITasks";
 import { TitleInput } from "../inputs/TitleInput";
 import { DescriptionArea } from "../inputs/DescriptionArea";
-import { StatusSelect } from "./StatusSelect";
 import { InputsWrapper } from "../inputs/InputsWrapper";
+import { StatusSelect } from "../inputs/StatusSelect";
 
 export function ModalInputs({
   invalidTitle,
