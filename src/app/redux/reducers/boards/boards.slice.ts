@@ -5,22 +5,21 @@ import { IBoard, ITask, ITasksState } from "interfaces/ITasks";
 import {
   getBoardByStatus,
   getBoardsFromTasks,
+  getLocalStorage,
   getTasksFromBoards,
-  sortTasks,
 } from "utils/functions";
 
 const initialState: ITasksState = {
-  isBoards: getBoardsFromTasks(tasks),
+  isBoards: getLocalStorage<IBoard[]>("boards") || getBoardsFromTasks(tasks),
 };
 
 const boardsSlice = createSlice({
-  name: "tasks",
+  name: "boards",
   initialState,
   reducers: {
     addTask: (state, action: PayloadAction<ITask>) => {
-      state.isBoards[getBoardByStatus(action.payload.status)].tasks.push(
-        action.payload
-      );
+      const actionBoard = getBoardByStatus(action.payload.status);
+      state.isBoards[actionBoard].tasks.push(action.payload);
     },
     updateTask: (state, action: PayloadAction<ITask>) => {
       const tasks = getTasksFromBoards(state.isBoards);

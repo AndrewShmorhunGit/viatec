@@ -6,11 +6,11 @@ import { ReactNode, createContext, useContext, useEffect } from "react";
 export const ThemeContext = createContext<ITheme | null>(null);
 
 export function ThemeContextProvider({ children }: { children: ReactNode }) {
-  const { isMode, setMode, toggleTheme, checkTheme, isLightTheme } = useTheme();
+  const { isMode, toggleTheme, checkTheme, isLightTheme } = useTheme();
 
   return (
     <ThemeContext.Provider
-      value={{ isMode, setMode, toggleTheme, checkTheme, isLightTheme }}
+      value={{ isMode, toggleTheme, checkTheme, isLightTheme }}
     >
       {isMode && children}
     </ThemeContext.Provider>

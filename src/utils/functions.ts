@@ -96,3 +96,20 @@ export function applyBoxShadow(target: HTMLDivElement) {
     target.parentElement.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
   }
 }
+
+export function setLocalStorage<T>(key: string, value: T) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (error) {
+    console.error(`Error setting ${key} in local storage:`, error);
+  }
+}
+
+export function getLocalStorage<T>(key: string): T | null {
+  const storage = global.localStorage;
+  if (storage) {
+    const data = global.localStorage.getItem(key);
+    return data ? JSON.parse(data) : null;
+  }
+  return null;
+}

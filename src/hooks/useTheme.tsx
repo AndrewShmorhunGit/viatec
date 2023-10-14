@@ -22,5 +22,5 @@ export const useTheme = () => {
   const isLightTheme = isMode === "light";
   const style = { position: "absolute", top: "1rem" };
 
-  return { isMode, setMode, toggleTheme, checkTheme, isLightTheme, style };
+  return { isMode, toggleTheme, checkTheme, isLightTheme, style };
 };
