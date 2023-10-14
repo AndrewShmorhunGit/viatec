@@ -1,30 +1,20 @@
 "use client";
-import { IBoard } from "interfaces/ITasks";
-import { getTaskById, getTasksFromBoards } from "utils/functions";
-import { ModalInputs } from "./ModalInputs";
+import { TaskStatusEnum } from "interfaces/ITasks";
+import { ModalInputs } from "../edit/ModalInputs";
+import { v4 as uuidv4 } from "uuid";
 import { ModalFooter } from "../content/ModalFooter";
 import { useModalTaskForm } from "hooks/useModalTaskForm";
 import { ModalHeader } from "../content/ModalHeader";
 import { ModalFormSubmitButton } from "../buttons/ModalFormSubmitButton";
 
-export function ModalEditTask({
-  value,
-  data,
-  boards,
-}: {
-  value: string;
-  data: string;
-  boards: IBoard[];
-}) {
-  const isValid = value === "edit";
-  const tasks = getTasksFromBoards(boards);
-  const { id, title, description, status } = getTaskById(data as string, tasks);
+export function ModalAddTask({ value, data }: { value: string; data: string }) {
+  const isValid = value === "add";
 
   const initialTask = {
-    id,
-    description,
-    title,
-    status,
+    id: uuidv4(),
+    description: "",
+    title: "",
+    status: data as TaskStatusEnum,
   };
 
   const {
@@ -42,7 +32,7 @@ export function ModalEditTask({
   if (isValid) {
     return (
       <form className="modal-content gap-4" onSubmit={handleSubmit}>
-        <ModalHeader title={`Editing Task "${title}"`} />
+        <ModalHeader title={"Add New Task"} />
         <ModalInputs
           invalidTitle={invalidTitle}
           invalidDescription={invalidDescription}

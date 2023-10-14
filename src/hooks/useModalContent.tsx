@@ -14,5 +14,6 @@ export const useModalContent = () => {
   );
   const { isMode } = useThemeContext();
   const theme = isMode === "dark" ? palette.color : palette.bg;
-  return { data, value, refClickOutside, theme };
+  const color = isMode !== "dark" ? palette.color : palette.bg;
+  return { data, value, refClickOutside, theme, color };
 };

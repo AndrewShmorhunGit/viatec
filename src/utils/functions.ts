@@ -22,13 +22,13 @@ export const sortTasks = (tasks: ITask[]): ITask[][] => {
   );
 };
 
-export const getTaskById = (
-  id: string | null,
-  tasks: ITask[]
-): ITask | null => {
+export const getTaskById = (id: string | null, tasks: ITask[]): ITask => {
   const task = tasks.find((task) => task.id === id);
-  if (task === undefined || id === "nill") {
-    return null;
+
+  if (task === undefined) {
+    throw new Error(
+      "Selected task is undefined. There is no such task id in the tasks list!"
+    );
   }
   return task;
 };

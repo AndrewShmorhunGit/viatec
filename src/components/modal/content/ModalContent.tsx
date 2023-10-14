@@ -1,9 +1,9 @@
 "use client";
 import { ModalDeleteTask } from "../delete/ModalDeleteTask";
 import { ModalEditTask } from "../edit/ModalEditTask";
-
-import { ModalContentContainer } from "../containers/ModalContentContainer";
+import { ContentFunctionalContainer } from "../containers/ContentFunctionalContainer";
 import { useAppSelector } from "app/redux";
+import { ModalAddTask } from "../add/ModalAddTask";
 
 export function ModalContent() {
   const {
@@ -16,10 +16,15 @@ export function ModalContent() {
 
   if (value !== "none" && data) {
     return (
-      <ModalContentContainer>
-        <ModalDeleteTask value={value} data={data} boards={isBoards} />
-        <ModalEditTask value={value} data={data} boards={isBoards} />
-      </ModalContentContainer>
+      <ContentFunctionalContainer>
+        {value === "add" && <ModalAddTask value={value} data={data} />}
+        {value === "delete" && (
+          <ModalDeleteTask value={value} data={data} boards={isBoards} />
+        )}
+        {value === "edit" && (
+          <ModalEditTask value={value} data={data} boards={isBoards} />
+        )}
+      </ContentFunctionalContainer>
     );
   }
 }

@@ -17,7 +17,6 @@ export interface ITask {
 }
 
 export interface ITasksState {
-  tasks: ITask[];
   isBoards: IBoard[];
 }
 

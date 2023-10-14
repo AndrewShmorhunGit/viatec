@@ -10,10 +10,7 @@ import {
 } from "utils/functions";
 
 const initialState: ITasksState = {
-  tasks: tasks,
-  isBoards: sortTasks(tasks).map((tasks, index) => {
-    return { id: index, tasks };
-  }),
+  isBoards: getBoardsFromTasks(tasks),
 };
 
 const boardsSlice = createSlice({
@@ -27,9 +24,10 @@ const boardsSlice = createSlice({
     },
     updateTask: (state, action: PayloadAction<ITask>) => {
       const tasks = getTasksFromBoards(state.isBoards);
-
-      const updatedTasks = [...tasks, action.payload];
-
+      const newTasksList = tasks.filter(
+        (tasks) => tasks.id !== action.payload.id
+      );
+      const updatedTasks = [...newTasksList, action.payload];
       state.isBoards = getBoardsFromTasks(updatedTasks);
     },
     deleteTask: (state, action: PayloadAction<string>) => {

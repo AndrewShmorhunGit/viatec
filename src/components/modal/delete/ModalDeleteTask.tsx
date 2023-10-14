@@ -1,8 +1,10 @@
 import { getTaskById, getTasksFromBoards } from "utils/functions";
-import { ModalCloseX } from "../buttons/ModalCloseX";
-import { ModalCloseButton } from "../buttons/ModalCloseButton";
 import { ModalDeleteButton } from "../buttons/ModalDeleteTaskButton";
-import { IBoard, ITask } from "interfaces/ITasks";
+import { IBoard } from "interfaces/ITasks";
+import { ContentContainer } from "../containers/ContentContainer";
+import { ModalHeader } from "../content/ModalHeader";
+import { ModalBody } from "../content/ModalBody";
+import { ModalFooter } from "../content/ModalFooter";
 
 export function ModalDeleteTask({
   value,
@@ -14,30 +16,17 @@ export function ModalDeleteTask({
   boards: IBoard[];
 }) {
   const tasks = getTasksFromBoards(boards);
+  const { title, id } = getTaskById(data, tasks);
 
-  let task: ITask | null = null;
-  if (data) {
-    task = data ? getTaskById(data, tasks) : null;
-  }
-
-  if (value === "delete" && data && task) {
+  if (value === "delete" && data) {
     return (
-      <div className="modal-content gap-4">
-        {/* Header */}
-        <div className="modal-header">
-          <h2 className="modal-title">{`Deleting ${task.title} task`}</h2>
-          <ModalCloseX />
-        </div>
-        {/* Body */}
-        <div className="modal-body">
-          <p className="fs-4">{`Are you shure you want to delete ${task.title} task?`}</p>
-        </div>
-        {/* Footer */}
-        <div className="modal-footer gap-4">
-          <ModalCloseButton />
-          <ModalDeleteButton id={task.id} />
-        </div>
-      </div>
+      <ContentContainer>
+        <ModalHeader title={`Deleting Task "${title}"`} />
+        <ModalBody title={title} />
+        <ModalFooter>
+          <ModalDeleteButton id={id} />
+        </ModalFooter>
+      </ContentContainer>
     );
   }
 }
